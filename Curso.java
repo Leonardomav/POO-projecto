@@ -9,14 +9,19 @@ public class Curso {
     private ArrayList<Disciplina> listDisciplina;
     
     public void criaDisciplinas(){
-        
+        int flag=0;
+
     }
 
-    public Curso(String nome, String grau, int duracao, ArrayList<Disciplina> listDisciplina) {
+    public Curso(String nome, String grau, int duracao) {
         this.nome = nome;
         this.grau = grau;
         this.duracao = duracao;
-        this.listDisciplina = listDisciplina;
     }
+
+    public String getNome() {
+        return nome;
+    }
+    
     
 }
