@@ -59,7 +59,6 @@ public class Disciplina {
         }
     }
     
-    
     public void addAlunos(ArrayList<Aluno> listAlunosGlobal){
         int size_global=listAlunosGlobal.size();
         int index, flag=1, opcao;
@@ -97,7 +96,6 @@ public class Disciplina {
             if(opcao==2) flag=0;
         }
     }
-    
     
     public void AddExame(){
         
