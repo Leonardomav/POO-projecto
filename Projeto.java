@@ -107,11 +107,13 @@ public class Projeto {
     }
     
     public static void criaAluno(ArrayList<Aluno> listAlunosGlobal, ArrayList<Curso> listCursos){
-        int aux_int, flag, numeroEst, anoMatricula, numeroFinal, opcao, num, size_alunos;
+        int flag, numeroEst, anoMatricula, opcao, num, size_alunos;
         int size_cursos = listCursos.size();
+        long numeroFinal;
         Curso aux_curso;
         Aluno aux_aluno;
         String regime, nome,email;
+        long aux_long;
         
         
         System.out.print("Quantos Alunos quer criar?\n-> ");
@@ -180,15 +182,17 @@ public class Projeto {
                 }
                 
                 aux_curso=listCursos.get(opcao-1);
-                numeroFinal=Integer.parseInt("" + anoMatricula + numeroEst);
+                
+                numeroFinal=Long.parseLong("" + anoMatricula + numeroEst);
+                
                 
                 size_alunos = listAlunosGlobal.size();
                 for (int j = 0; j < size_alunos; j++){
                     aux_aluno = listAlunosGlobal.get(j);
-                    aux_int = aux_aluno.getNumeroEst();
-                    if(aux_int==numeroFinal){
+                    aux_long = aux_aluno.getNumeroEst();
+                    if(aux_long==numeroFinal){
                         flag=0;
-                        System.out.println("Curso já existe. Insira de novo!");
+                        System.out.println("Numero já existe. Insira de novo!");
                     }
                 }
             }while(flag==0);
@@ -202,7 +206,7 @@ public class Projeto {
     
     public static void criaDocente(ArrayList<Docente> listDocentesGlobal){
         int aux_int, numero, size, flag;
-        String areaInv, email, area, categoria, nome;
+        String areaInv, email, categoria, nome;
         Docente aux_docente;
         
         
@@ -261,6 +265,8 @@ public class Projeto {
                 if(opcao>0 && opcao<size_cursos+1) break;
                 System.out.println("Opção Inválida");
             }
+            
+            aux_curso=listCursos.get(opcao-1);
            
             while(true){
                 System.out.print("Quer adicionar quantas disciplinas?\n-> ");
@@ -270,7 +276,7 @@ public class Projeto {
             }
             
             for(int j=0; j<opcao; j++){
-                listCursos.get(opcao-1).criaDisciplina(listDocentesGlobal);
+                aux_curso.criaDisciplina(listDocentesGlobal);
             }
             
             while(true){
@@ -323,7 +329,7 @@ public class Projeto {
             
             
             while(true){
-                System.out.println("Deseja Adicionar algo a mais alguma disciplina?\n1 - Sim\n2 - Não\n->");
+                System.out.print("Deseja Adicionar algo a mais alguma disciplina?\n1 - Sim\n2 - Não\n-> ");
                 opcao=get_int();
                 if(opcao==1 || opcao==2) break;
                 System.out.println("Opção Inválida");

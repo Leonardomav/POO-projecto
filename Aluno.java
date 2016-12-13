@@ -1,11 +1,12 @@
 package projeto;
 
 public class Aluno extends Pessoa{
-    private int numeroEst, anoMatricula;
+    private int anoMatricula;
+    private long numeroEst;
     private Curso curso;
     private String regime;
 
-    public Aluno(String nome, String email, int numeroEst, int anoMatricula, Curso curso, String regime) {
+    public Aluno(String nome, String email, long numeroEst, int anoMatricula, Curso curso, String regime) {
         super(nome, email);
         this.numeroEst = numeroEst;
         this.anoMatricula = anoMatricula;
@@ -13,7 +14,7 @@ public class Aluno extends Pessoa{
         this.regime = regime;
     }
 
-    public int getNumeroEst() {
+    public long getNumeroEst() {
         return numeroEst;
     }
     
