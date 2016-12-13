@@ -14,15 +14,17 @@ public class Curso {
         int size_docente = listDocenteGlobal.size();
         int size_disp = listDisciplina.size();
         int opcao, docenteResp, flag;
+        String nome_disp;
         
         do{
             flag=1;
             System.out.print("Nome da disciplina: ");
-            nome = get_string();
+            nome_disp = get_string();
             for(int j=0; j<size_disp;j++){
-                if(listDisciplina.get(j).getNome().equals(nome)){
+                if(listDisciplina.get(j).getNome().equals(nome_disp)){
                     flag=0;
                     System.out.println("Nome já existe. Insira de novo!");
+                    break;
                 }
             }
         }while(flag==0);
@@ -30,16 +32,16 @@ public class Curso {
         System.out.println("Pofessor Responsável:");
         for (int j = 1; j <= size_docente; j++)
             System.out.println(j + " - " + listDocenteGlobal.get(j-1).getNome() + " - " + listDocenteGlobal.get(j-1).getNumeroMec());
-        System.out.print("-> ");
 
         while(true){
+            System.out.print("-> ");
             opcao=get_int();
             if(opcao>0 && opcao<size_docente+1) break;
             System.out.println("Opção Inválida");
         }
         
         docenteResp = listDocenteGlobal.get(opcao-1).getNumeroMec();
-        Disciplina nova_disp = new Disciplina(nome, docenteResp);
+        Disciplina nova_disp = new Disciplina(nome_disp, docenteResp);
         listDisciplina.add(nova_disp);
         System.out.println("Disciplina Adicionada.");
     }

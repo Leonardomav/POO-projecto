@@ -83,8 +83,8 @@ public class Projeto {
                 nome=get_string();
                 System.out.print("Grau do curso: ");
                 grau=get_string();
-                System.out.print("Duração do curso: ");
                 while(true){
+                    System.out.print("Duração do curso: ");
                     duracao=get_int();
                     if(duracao > 0) break;
                     System.out.println("Número Inválido");
@@ -126,22 +126,22 @@ public class Projeto {
                 System.out.print("Email do Aluno: ");
                 email=get_string();
                 
-                System.out.print("Numero do Aluno: ");
                 while(true){
+                    System.out.print("Numero do Aluno: ");
                     numeroEst=get_int();
                     if((String.valueOf(numeroEst).length())==6) break;
                     System.out.println("Número Inválido");
                 }
-                
-                System.out.print("Ano de matriculo do Aluno: ");
+               
                 while(true){
+                    System.out.print("Ano de matriculo do Aluno: ");
                     anoMatricula=get_int();
                     if((String.valueOf(anoMatricula).length())==4) break;
                     System.out.println("Número Inválido");
                 }
                 
-                System.out.print("Regime do Aluno:\n1 - Normal\n2 - Trabalhador-Estudante\n3 - Atleta\n4 - Dirigente associativo\n5 - Erasmus\n-> ");
                 while(true){
+                    System.out.print("Regime do Aluno:\n1 - Normal\n2 - Trabalhador-Estudante\n3 - Atleta\n4 - Dirigente associativo\n5 - Erasmus\n-> ");
                     opcao=get_int();
                     if(opcao>0 && opcao<6) break;
                     System.out.println("Opção Inválida");
@@ -171,9 +171,9 @@ public class Projeto {
                 for (int j = 1; j <= size_cursos; j++)
                     System.out.println(j + " - " + listCursos.get(j-1).getNome());
                 
-                System.out.print("-> ");
                 
                 while(true){
+                    System.out.print("-> ");
                     opcao=get_int();
                     if(opcao>0 && opcao<size_cursos+1) break;
                     System.out.println("Opção Inválida");
@@ -255,28 +255,26 @@ public class Projeto {
             for (int j = 1; j <= size_cursos; j++)
                 System.out.println(j + " - " + listCursos.get(j-1).getNome());
 
-            System.out.print("-> ");
-
             while(true){
+                System.out.print("-> ");
                 opcao=get_int();
                 if(opcao>0 && opcao<size_cursos+1) break;
                 System.out.println("Opção Inválida");
             }
-            
-            aux_curso=listCursos.get(opcao-1);
-            System.out.print("Quer adicionar quantas disciplinas?\n-> ");
+           
             while(true){
+                System.out.print("Quer adicionar quantas disciplinas?\n-> ");
                 opcao=get_int();
                 if(opcao>0) break;
                 System.out.println("Opção Inválida");
             }
             
             for(int j=0; j<opcao; j++){
-                aux_curso.criaDisciplina(listDocentesGlobal);
+                listCursos.get(opcao-1).criaDisciplina(listDocentesGlobal);
             }
             
-            System.out.print("Quer adicionar disciplinas a mais algum curso?\n1 - Sim\n2 - Não\n-> ");
             while(true){
+                System.out.print("Quer adicionar disciplinas a mais algum curso?\n1 - Sim\n2 - Não\n-> ");
                 opcao=get_int();
                 if(opcao==1 || opcao==2) break;
                 System.out.println("Opção Inválida");
@@ -294,14 +292,13 @@ public class Projeto {
         do{
             flag=1;
             size_cursos=listCursos.size();
-            
-            System.out.println("Curso: ");
-            for (int j = 1; j <= size_cursos; j++)
-                System.out.println(j + " - " + listCursos.get(j-1).getNome());
-                
-            System.out.print("-> ");
                 
             while(true){
+                System.out.println("Quer adicionar informação a que curso?: ");
+                for (int j = 1; j <= size_cursos; j++)
+                    System.out.println(j + " - " + listCursos.get(j-1).getNome());
+                
+                System.out.print("-> ");
                 opcao=get_int();
                 if(opcao>0 && opcao<size_cursos+1) break;
                 System.out.println("Opção Inválida");
@@ -309,14 +306,13 @@ public class Projeto {
             
             listDisp=listCursos.get(opcao-1).getListDisciplina();
             size_disp=listDisp.size();
-            
-            System.out.println("Disciplina: ");
-            for (int j = 1; j <= size_disp; j++)
-                System.out.println(j + " - " + listDisp.get(j-1).getNome());
-                
-            System.out.print("-> ");
                 
             while(true){
+                System.out.println("Disciplina: ");
+                for (int j = 1; j <= size_disp; j++)
+                    System.out.println(j + " - " + listDisp.get(j-1).getNome());
+                
+                System.out.print("-> ");
                 opcao=get_int();
                 if(opcao>0 && opcao<size_disp+1) break;
                 System.out.println("Opção Inválida");
@@ -325,8 +321,9 @@ public class Projeto {
             listDisp.get(opcao-1).addDocentes(listDocentesGlobal);
             listDisp.get(opcao-1).addAlunos(listAlunosGlobal);
             
-            System.out.println("Deseja Adicionar algo a mais alguma disciplina?\n1 - Sim\n2 - Não\n->");
+            
             while(true){
+                System.out.println("Deseja Adicionar algo a mais alguma disciplina?\n1 - Sim\n2 - Não\n->");
                 opcao=get_int();
                 if(opcao==1 || opcao==2) break;
                 System.out.println("Opção Inválida");
