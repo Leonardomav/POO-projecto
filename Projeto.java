@@ -4,23 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Projeto {
-    ArrayList<Curso> listCursos = new ArrayList<Curso>();
-    ArrayList<Aluno> listAlunosGlobal = new ArrayList<Aluno>();
-    ArrayList<Docente> listDocentesGlobal = new ArrayList<Docente>();
     
     public static void main(String[] args) {
         ArrayList<Curso> listCursos = new ArrayList<Curso>();
         ArrayList<Aluno> listAlunosGlobal = new ArrayList<Aluno>();
         ArrayList<Docente> listDocentesGlobal = new ArrayList<Docente>();
 
-        
-        
-        
         criaCurso(listCursos);
         criaAluno(listAlunosGlobal, listCursos);
         criaDocente(listDocentesGlobal);
         addDisciplinas(listCursos, listDocentesGlobal);
-        
+        addtoDisp(listCursos, listDocentesGlobal,listAlunosGlobal);
         
         menu();
     }
@@ -282,6 +276,56 @@ public class Projeto {
             }
             
             System.out.print("Quer adicionar disciplinas a mais algum curso?\n1 - Sim\n2 - Não\n-> ");
+            while(true){
+                opcao=get_int();
+                if(opcao==1 || opcao==2) break;
+                System.out.println("Opção Inválida");
+            }
+            if(opcao==1) flag=0;
+            
+        }while(flag==0);
+    }
+    
+    public static void addtoDisp(ArrayList<Curso> listCursos,ArrayList<Docente> listDocentesGlobal, ArrayList<Aluno> listAlunosGlobal){
+        int flag, size_cursos, size_disp,opcao;
+        ArrayList<Disciplina> listDisp;
+        
+        
+        do{
+            flag=1;
+            size_cursos=listCursos.size();
+            
+            System.out.println("Curso: ");
+            for (int j = 1; j <= size_cursos; j++)
+                System.out.println(j + " - " + listCursos.get(j-1).getNome());
+                
+            System.out.print("-> ");
+                
+            while(true){
+                opcao=get_int();
+                if(opcao>0 && opcao<size_cursos+1) break;
+                System.out.println("Opção Inválida");
+            }
+            
+            listDisp=listCursos.get(opcao-1).getListDisciplina();
+            size_disp=listDisp.size();
+            
+            System.out.println("Disciplina: ");
+            for (int j = 1; j <= size_disp; j++)
+                System.out.println(j + " - " + listDisp.get(j-1).getNome());
+                
+            System.out.print("-> ");
+                
+            while(true){
+                opcao=get_int();
+                if(opcao>0 && opcao<size_disp+1) break;
+                System.out.println("Opção Inválida");
+            }
+            
+            listDisp.get(opcao-1).addDocentes(listDocentesGlobal);
+            listDisp.get(opcao-1).addAlunos(listAlunosGlobal);
+            
+            System.out.println("Deseja Adicionar algo a mais alguma disciplina?\n1 - Sim\n2 - Não\n->");
             while(true){
                 opcao=get_int();
                 if(opcao==1 || opcao==2) break;
