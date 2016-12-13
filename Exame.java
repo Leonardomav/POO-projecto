@@ -10,7 +10,7 @@ public abstract class Exame {
     private Sala sala;
     private ArrayList<Docente> listVigilantes;
     private ArrayList<NaoDocente> listFuncionarios;
-    private ArrayList<Aluno> listAlunos;
+    private ArrayList<Integer> listAlunos;
     private ArrayList<Float> listNotas;
     
     public void defineNotas(){
