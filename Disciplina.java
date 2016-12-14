@@ -1,10 +1,11 @@
 
 package projeto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import static projeto.Projeto.get_int;
 
-public class Disciplina {
+public class Disciplina implements Serializable{
     private final String nome;
     private final int docenteResp;
     private ArrayList<Long> listAlunos = new ArrayList<Long>();
@@ -14,6 +15,11 @@ public class Disciplina {
     public Disciplina(String nome, int docenteResp) {
        this.nome=nome;
        this.docenteResp=docenteResp;
+    }
+
+    @Override
+    public String toString() {
+        return "Disciplina{" + "nome=" + nome + ", docenteResp=" + docenteResp + ", listAlunos=" + listAlunos + ", listDocentes=" + listDocentes + ", listExames=" + listExames + '}';
     }
 
     public String getNome() {

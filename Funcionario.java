@@ -1,9 +1,10 @@
 
 package projeto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Funcionario extends Pessoa{
+public abstract class Funcionario extends Pessoa implements Serializable{
     private int numeroMec;
     private String categoria;
 

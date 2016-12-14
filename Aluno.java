@@ -16,6 +16,11 @@ public class Aluno extends Pessoa implements Serializable{
         this.regime = regime;
     }
 
+    @Override
+    public String toString() {
+        return "Aluno{" + "anoMatricula=" + anoMatricula + ", numeroEst=" + numeroEst + ", curso=" + curso + ", regime=" + regime + '}';
+    }
+
     public long getNumeroEst() {
         return numeroEst;
     }
