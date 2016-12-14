@@ -11,6 +11,17 @@ public class Curso implements Serializable{
     private int duracao;
     private ArrayList<Disciplina> listDisciplina = new ArrayList<Disciplina>();
     
+    public Curso(String nome, String grau, int duracao) {
+        this.nome = nome;
+        this.grau = grau;
+        this.duracao = duracao;
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" + "nome=" + nome + ", grau=" + grau + ", duracao=" + duracao + ", listDisciplina=" + listDisciplina + '}';
+    }
+    
     public void criaDisciplina(ArrayList<Docente> listDocenteGlobal){
         int size_docente = listDocenteGlobal.size();
         int size_disp = listDisciplina.size();
@@ -45,12 +56,6 @@ public class Curso implements Serializable{
         Disciplina nova_disp = new Disciplina(nome_disp, docenteResp);
         listDisciplina.add(nova_disp);
         System.out.println("Disciplina Adicionada.");
-    }
-
-    public Curso(String nome, String grau, int duracao) {
-        this.nome = nome;
-        this.grau = grau;
-        this.duracao = duracao;
     }
 
     public String getNome() {

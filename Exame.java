@@ -1,9 +1,10 @@
 package projeto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Exame {
+public abstract class Exame implements Serializable{
     private final Date dataHora;
     private final int duracao; //minutos
     private final Sala sala;

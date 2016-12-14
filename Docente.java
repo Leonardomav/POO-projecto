@@ -9,6 +9,11 @@ public class Docente extends Funcionario implements Serializable{
         super(numeroMec, categoria, nome, email);
         this.areaInv = areaInv;
     }
+
+    @Override
+    public String toString() {
+        return "Docente{" + "areaInv=" + areaInv + '}';
+    }
     
     
     

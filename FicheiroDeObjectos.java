@@ -11,7 +11,7 @@ public class FicheiroDeObjectos {
             iS = new ObjectInputStream(new FileInputStream(nomeDoFicheiro));
             return true;
         } catch (IOException e){
-            System.err.println("Caught IOException " + e.getMessage());
+            System.err.println("Caught IOException abreLeitura " + e.getMessage());
             return false;
         }
     } 
@@ -21,7 +21,7 @@ public class FicheiroDeObjectos {
             oS = new ObjectOutputStream(new FileOutputStream(nomeDoFicheiro));
             return true;
         } catch (IOException e){
-            System.err.println("Caught IOException " + e.getMessage());
+            System.err.println("Caught IOException abreEscrita " + e.getMessage());
             return false;
         }
     }
@@ -30,10 +30,10 @@ public class FicheiroDeObjectos {
         try{
             return iS.readObject();
         } catch (IOException e){
-            System.err.println("Caught IOException " + e.getMessage());
+            System.err.println("Caught IOException leObjecto " + e.getMessage());
             return null;
         } catch (ClassNotFoundException e){
-            System.err.println("Caught ClassNotFoundException " + e.getMessage());
+            System.err.println("Caught ClassNotFoundException leObjecto " + e.getMessage());
             return null;
         }
     } 
@@ -42,7 +42,7 @@ public class FicheiroDeObjectos {
         try{
             oS.writeObject(o);
         }catch (IOException e){
-            System.err.println("Caught IOException " + e.getMessage());
+            System.err.println("Caught IOException escreveObjecto " + e.getMessage());
         }
     }
     
@@ -50,7 +50,7 @@ public class FicheiroDeObjectos {
         try{
             iS.close();
         }catch (IOException e){
-            System.err.println("Caught IOException " + e.getMessage());
+            System.err.println("Caught IOException fechaLeitura " + e.getMessage());
         }
     }
     
@@ -58,7 +58,7 @@ public class FicheiroDeObjectos {
         try{
             oS.close();
         }catch (IOException e){
-            System.err.println("Caught IOException " + e.getMessage());
+            System.err.println("Caught IOException fechaEscrita " + e.getMessage());
         }
     }
 }
