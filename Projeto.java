@@ -16,52 +16,89 @@ public class Projeto {
         addDisciplinas(listCursos, listDocentesGlobal);
         addtoDisp(listCursos, listDocentesGlobal,listAlunosGlobal);
         
-        menu();
+        menu(listCursos);
     }
     
-    public static void menu(){
-        int opcao;
-        System.out.println("----------MENU----------");
-        System.out.print("1 - Criar Exame\n2 - Configurar Sala\n3 - Convocar vigilantes ou funcionários\n4 - Inscrever alunos\n5 - Lançar notas\n6 - Listar Exames\n7 - Listar alunos de um exame\n8 - Listar exames de um aluno\n 9 - Listar acossiados de um exame\n10 - Listar exames de um funcionário ou docente\n11 - Listar notas de um exame\nOpção: ");
-        opcao=get_int();
-        switch (opcao){
-            case 1: 
-                //criar_exame();
-                break;
-            case 2: 
-                //criar_exame();
-                break;
-            case 3: 
-                //criar_exame();
-                break;
-            case 4: 
-                //criar_exame();
-                break;
-            case 5: 
-                //criar_exame();
-                break;
-            case 6: 
-                //criar_exame();
-                break;
-            case 7: 
-                //criar_exame();
-                break;
-            case 8: 
-                //criar_exame();
-                break;
-            case 9: 
-                //criar_exame();
-                break;
-            case 10: 
-                //criar_exame();
-                break;
-            case 11: 
-                //criar_exame();
-                break;
-            default: 
-                System.out.println("Opção inválida");
+    public static void menu(ArrayList<Curso> listCursos){
+        int opcao, flag=1;
+        while(flag==1){
+            System.out.println("----------MENU----------");
+            System.out.print("1 - Criar Exame\n2 - Configurar Sala\n3 - Convocar vigilantes ou funcionários\n4 - Inscrever alunos\n5 - Lançar notas\n6 - Listar Exames\n7 - Listar alunos de um exame\n8 - Listar exames de um aluno\n9 - Listar acossiados de um exame\n10 - Listar exames de um funcionário ou docente\n11 - Listar notas de um exame\n0 - Sair\nOpção: ");
+            opcao=get_int();
+            switch (opcao){
+                case 0:
+                    flag=0;
+                    break;
+                case 1: 
+                    criar_exame(listCursos);
+                    break;
+                case 2: 
+                    //criar_exame();
+                    break;
+                case 3: 
+                    //criar_exame();
+                    break;
+                case 4: 
+                    //criar_exame();
+                    break;
+                case 5: 
+                    //criar_exame();
+                    break;
+                case 6: 
+                    //criar_exame();
+                    break;
+                case 7: 
+                    //criar_exame();
+                    break;
+                case 8: 
+                    //criar_exame();
+                    break;
+                case 9: 
+                    //criar_exame();
+                    break;
+                case 10: 
+                    //criar_exame();
+                    break;
+                case 11: 
+                    //criar_exame();
+                    break;
+                default: 
+                    System.out.println("Opção inválida");
+            }
         }
         
+    }
+    
+    public static void criar_exame(ArrayList<Curso> listCursos){
+        ArrayList<Disciplina> listDisp;
+        int size_cursos=listCursos.size();
+        int opcao, size_disp;
+        
+        while(true){
+            System.out.println("Quer adicionar informação a que curso?: ");
+            for (int j = 1; j <= size_cursos; j++)
+                System.out.println(j + " - " + listCursos.get(j-1).getNome());
+
+            System.out.print("-> ");
+            opcao=get_int();
+            if(opcao>0 && opcao<size_cursos+1) break;
+            System.out.println("Opção Inválida");
+        }
+        listDisp=listCursos.get(opcao-1).getListDisciplina();
+        size_disp=listDisp.size();
+                
+        while(true){
+            System.out.println("Disciplina: ");
+            for (int j = 1; j <= size_disp; j++)
+                System.out.println(j + " - " + listDisp.get(j-1).getNome());
+
+            System.out.print("-> ");
+            opcao=get_int();
+            if(opcao>0 && opcao<size_disp+1) break;
+            System.out.println("Opção Inválida");
+        }
+        
+        listDisp.get(opcao-1).CriaExame();
         
     }
     

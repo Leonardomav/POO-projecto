@@ -97,7 +97,7 @@ public class Disciplina {
         }
     }
     
-    public void AddExame(){
+    public void CriaExame(){
         
     }
 }

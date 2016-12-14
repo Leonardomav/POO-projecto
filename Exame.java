@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Exame {
-    private Disciplina disciplina;
-    private Date dataHora;
-    private int duracao; //minutos
-    private Sala sala;
+    private final Date dataHora;
+    private final int duracao; //minutos
+    private final Sala sala;
     private ArrayList<Docente> listVigilantes;
     private ArrayList<NaoDocente> listFuncionarios;
     private ArrayList<Integer> listAlunos;
     private ArrayList<Float> listNotas;
+
+    public Exame(Date dataHora, int duracao, Sala sala) {
+        this.dataHora = dataHora;
+        this.duracao = duracao;
+        this.sala = sala;
+    }
+    
     
     public void defineNotas(){
         
