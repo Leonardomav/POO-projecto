@@ -1,6 +1,8 @@
 package projeto;
 
-public class Aluno extends Pessoa{
+import java.io.Serializable;
+
+public class Aluno extends Pessoa implements Serializable{
     private int anoMatricula;
     private long numeroEst;
     private Curso curso;

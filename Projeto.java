@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,13 +11,18 @@ public class Projeto {
         ArrayList<Aluno> listAlunosGlobal = new ArrayList<Aluno>();
         ArrayList<Docente> listDocentesGlobal = new ArrayList<Docente>();
 
+        carregarDeFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
+        
         criaCurso(listCursos);
         criaAluno(listAlunosGlobal, listCursos);
         criaDocente(listDocentesGlobal);
         addDisciplinas(listCursos, listDocentesGlobal);
         addtoDisp(listCursos, listDocentesGlobal,listAlunosGlobal);
         
+        guardarEmFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
+        
         menu(listCursos);
+        
     }
     
     public static void menu(ArrayList<Curso> listCursos){
@@ -98,7 +104,7 @@ public class Projeto {
             System.out.println("Opção Inválida");
         }
         
-        listDisp.get(opcao-1).CriaExame();
+        listDisp.get(opcao-1).criaExame();
         
     }
     
@@ -391,6 +397,39 @@ public class Projeto {
     
     public static String get_string(){
         Scanner sc = new Scanner(System.in);
-        return sc.next();
+        return sc.nextLine();
+    }
+    
+    public static void guardarEmFicheiro(ArrayList<Curso> listCursos, ArrayList<Aluno> listAlunosGlobal, ArrayList<Docente> listDocentesGlobal){
+        FicheiroDeObjectos fo = new FicheiroDeObjectos();
+        
+        fo.abreEscrita("cursos.dat");
+        fo.escreveObjecto(listCursos);
+        fo.fechaEscrita();
+        
+        fo.abreEscrita("alunos.dat");
+        fo.escreveObjecto(listAlunosGlobal);
+        fo.fechaEscrita();
+        
+        fo.abreEscrita("docentes.dat");
+        fo.escreveObjecto(listCursos);
+        fo.fechaEscrita();
+        
+    }
+    
+    public static void carregarDeFicheiro(ArrayList<Curso> listCursos, ArrayList<Aluno> listAlunosGlobal, ArrayList<Docente> listDocentesGlobal) {
+        FicheiroDeObjectos fo = new FicheiroDeObjectos();
+        
+        fo.abreLeitura("cursos.dat");
+        listCursos = (ArrayList<Curso>) fo.leObjecto();
+        fo.fechaLeitura();
+        
+        fo.abreLeitura("alunos.dat");
+        listAlunosGlobal = (ArrayList<Aluno>) fo.leObjecto();
+        fo.fechaLeitura();
+        
+        fo.abreLeitura("docentes.dat");
+        listDocentesGlobal = (ArrayList<Docente>) fo.leObjecto();
+        fo.fechaLeitura();
     }
 }

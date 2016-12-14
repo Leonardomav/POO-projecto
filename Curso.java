@@ -1,11 +1,12 @@
 
 package projeto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import static projeto.Projeto.get_int;
 import static projeto.Projeto.get_string;
 
-public class Curso {
+public class Curso implements Serializable{
     private String nome, grau;
     private int duracao;
     private ArrayList<Disciplina> listDisciplina = new ArrayList<Disciplina>();
