@@ -3,10 +3,10 @@ package projeto;
 import java.io.Serializable;
 
 public class Aluno extends Pessoa implements Serializable{
-    private int anoMatricula;
-    private long numeroEst;
-    private Curso curso;
-    private String regime;
+    private final int anoMatricula;
+    private final long numeroEst;
+    private final Curso curso;
+    private final String regime;
 
     public Aluno(String nome, String email, long numeroEst, int anoMatricula, Curso curso, String regime) {
         super(nome, email);

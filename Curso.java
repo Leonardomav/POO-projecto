@@ -60,8 +60,9 @@ public class Curso implements Serializable{
     public ArrayList<Disciplina> getListDisciplina() {
         return listDisciplina;
     }
-    
-    
-    
-    
+
+    public void addListDisciplina(Disciplina Disciplina) {
+        this.listDisciplina.add(Disciplina);
+    }
+  
 }

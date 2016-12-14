@@ -10,33 +10,53 @@ public class Projeto {
         ArrayList<Curso> listCursos = new ArrayList<Curso>();
         ArrayList<Aluno> listAlunosGlobal = new ArrayList<Aluno>();
         ArrayList<Docente> listDocentesGlobal = new ArrayList<Docente>();
+        ArrayList<Sala> listSalas = new ArrayList<Sala>();
 
-        carregarDeFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
+        //carregarDeFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
         
-        criaCurso(listCursos);
-        criaAluno(listAlunosGlobal, listCursos);
-        criaDocente(listDocentesGlobal);
-        addDisciplinas(listCursos, listDocentesGlobal);
-        addtoDisp(listCursos, listDocentesGlobal,listAlunosGlobal);
+        //hardcode para testes
         
-        guardarEmFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
+        listCursos.add(new Curso("LEI", "Mestrado", 5));
+        listAlunosGlobal.add(new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursos.get(0), "Normal"));
+        listAlunosGlobal.add(new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursos.get(0), "Normal"));
+        listAlunosGlobal.add(new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursos.get(0), "Normal"));
+        listDocentesGlobal.add(new Docente("Ernesto", "lol", "lol", 1, "lol"));
+        listDocentesGlobal.add(new Docente("Cordeiro", "lol", "lol", 2, "lol"));
+        listDocentesGlobal.add(new Docente("Vasco", "lol", "lol", 3, "lol"));
+        listCursos.get(0).addListDisciplina(new Disciplina("IPRP", 1));
+        listCursos.get(0).addListDisciplina(new Disciplina("POO", 2));
+        listCursos.get(0).getListDisciplina().get(0).addListAlunos(1111111111L);
+        listCursos.get(0).getListDisciplina().get(0).addListAlunos(2222222222L);
+        listCursos.get(0).getListDisciplina().get(1).addListAlunos(1111111111L);
+        listCursos.get(0).getListDisciplina().get(1).addListAlunos(2222222222L);
+        listCursos.get(0).getListDisciplina().get(0).addListDocentes(2);
+        listCursos.get(0).getListDisciplina().get(1).addListDocentes(1);
+        listSalas.add(new Sala("DEI", 1));
+        listSalas.add(new Sala("DEI", 2));
+        listSalas.add(new Sala("DEI", 3));
         
-        menu(listCursos);
+
+        
+        //guardarEmFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
+        
+        menu(listCursos,listAlunosGlobal,listDocentesGlobal, listSalas);
         
     }
     
-    public static void menu(ArrayList<Curso> listCursos){
+    public static void menu(ArrayList<Curso> listCursos, ArrayList<Aluno> listAlunosGlobal, ArrayList<Docente> listDocentesGlobal, ArrayList<Sala> listSalas){
         int opcao, flag=1;
         while(flag==1){
             System.out.println("----------MENU----------");
-            System.out.print("1 - Criar Exame\n2 - Configurar Sala\n3 - Convocar vigilantes ou funcionários\n4 - Inscrever alunos\n5 - Lançar notas\n6 - Listar Exames\n7 - Listar alunos de um exame\n8 - Listar exames de um aluno\n9 - Listar acossiados de um exame\n10 - Listar exames de um funcionário ou docente\n11 - Listar notas de um exame\n0 - Sair\nOpção: ");
+            System.out.print("99 - ADMIN\n1 - Criar Exame\n2 - Configurar Sala\n3 - Convocar vigilantes ou funcionários\n4 - Inscrever alunos\n5 - Lançar notas\n6 - Listar Exames\n7 - Listar alunos de um exame\n8 - Listar exames de um aluno\n9 - Listar acossiados de um exame\n10 - Listar exames de um funcionário ou docente\n11 - Listar notas de um exame\n0 - Sair\nOpção: ");
             opcao=get_int();
             switch (opcao){
+                case 99:
+                    setup(listCursos,listAlunosGlobal,listDocentesGlobal);
                 case 0:
                     flag=0;
                     break;
                 case 1: 
-                    criar_exame(listCursos);
+                    criar_exame(listCursos, listSalas);
                     break;
                 case 2: 
                     //criar_exame();
@@ -75,13 +95,13 @@ public class Projeto {
         
     }
     
-    public static void criar_exame(ArrayList<Curso> listCursos){
+    public static void criar_exame(ArrayList<Curso> listCursos, ArrayList<Sala> listSalas){
         ArrayList<Disciplina> listDisp;
         int size_cursos=listCursos.size();
         int opcao, size_disp;
         
         while(true){
-            System.out.println("Quer adicionar informação a que curso?: ");
+            System.out.println("Quer adicionar um exame a que curso?: ");
             for (int j = 1; j <= size_cursos; j++)
                 System.out.println(j + " - " + listCursos.get(j-1).getNome());
 
@@ -94,7 +114,7 @@ public class Projeto {
         size_disp=listDisp.size();
                 
         while(true){
-            System.out.println("Disciplina: ");
+            System.out.println("A que disciplina?");
             for (int j = 1; j <= size_disp; j++)
                 System.out.println(j + " - " + listDisp.get(j-1).getNome());
 
@@ -104,8 +124,8 @@ public class Projeto {
             System.out.println("Opção Inválida");
         }
         
-        listDisp.get(opcao-1).criaExame();
-        
+        listDisp.get(opcao-1).criaExame(listSalas);
+        System.out.println("Exame criado e adicionado.");
     }
     
     public static void criaCurso(ArrayList<Curso> listCursos){
@@ -431,5 +451,13 @@ public class Projeto {
         fo.abreLeitura("docentes.dat");
         listDocentesGlobal = (ArrayList<Docente>) fo.leObjecto();
         fo.fechaLeitura();
+    }
+    
+    public static void setup(ArrayList<Curso> listCursos, ArrayList<Aluno> listAlunosGlobal, ArrayList<Docente> listDocentesGlobal){
+        criaCurso(listCursos);
+        criaAluno(listAlunosGlobal, listCursos);
+        criaDocente(listDocentesGlobal);
+        addDisciplinas(listCursos, listDocentesGlobal);
+        addtoDisp(listCursos, listDocentesGlobal,listAlunosGlobal);
     }
 }
