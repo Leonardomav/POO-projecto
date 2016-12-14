@@ -1,10 +1,11 @@
 package projeto;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+
 
 public abstract class Exame {
-    private final Date dataHora;
+    private final Calendar dataHora;
     private final int duracao; //minutos
     private final Sala sala;
     private ArrayList<Docente> listVigilantes;
@@ -12,7 +13,7 @@ public abstract class Exame {
     private ArrayList<Integer> listAlunos;
     private ArrayList<Float> listNotas;
 
-    public Exame(Date dataHora, int duracao, Sala sala) {
+    public Exame(Calendar dataHora, int duracao, Sala sala) {
         this.dataHora = dataHora;
         this.duracao = duracao;
         this.sala = sala;

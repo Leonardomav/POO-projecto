@@ -111,6 +111,9 @@ public class Disciplina {
     }
     
     public void criaExame( ArrayList<Sala> listSalas){
+        int ano, mes, dia, hora, min;
+        
+        System.out.println("Deseja Criar um Exame :\n1 - Normal\n2 - Recurso\n3 - Especial");
         
     }
 
