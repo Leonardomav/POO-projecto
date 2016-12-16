@@ -132,15 +132,15 @@ public class Disciplina implements Serializable{
         
         do{
             System.out.print("Ano:");
-            ano=get_int();
+            ano=retornaInteiro();
             System.out.print("Mes:");
-            mes=get_int();
+            mes=retornaInteiro();
             System.out.println("Dia:");
-            dia=get_int();
+            dia=retornaInteiro();
             System.out.println("Hora");  
-            hora=get_int();
+            hora=retornaInteiro();
             System.out.println("Min");
-            min=get_int();
+            min=retornaInteiro();
             flag=dataValida(dia, mes, ano, hora,  min);
         }while(flag==0);
         data.clear();
@@ -149,7 +149,7 @@ public class Disciplina implements Serializable{
         flag=0;
         do{
             System.out.print("Duração em minutos:");
-            duracao=get_int();
+            duracao=retornaInteiro();
             if(duracao>0) flag=1;
         }while(flag==0);
         
@@ -162,7 +162,7 @@ public class Disciplina implements Serializable{
             }
 
             System.out.print("-> ");
-            opcao=get_int();
+            opcao=retornaInteiro();
             if(opcao>0 && opcao<size_salas+1) flag=0;
             System.out.println("Opção Inválida");
         
