@@ -1,12 +1,15 @@
 
 package projeto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import static projeto.Projeto.get_int;
+import static projeto.Projeto.retornaInteiro;
 
-public class Disciplina {
+
+public class Disciplina implements Serializable{
     private final String nome;
     private final int docenteResp;
     private ArrayList<Long> listAlunos = new ArrayList<Long>();
@@ -16,6 +19,11 @@ public class Disciplina {
     public Disciplina(String nome, int docenteResp) {
        this.nome=nome;
        this.docenteResp=docenteResp;
+    }
+
+    @Override
+    public String toString() {
+        return "Disciplina{" + "nome=" + nome + ", docenteResp=" + docenteResp + ", listAlunos=" + listAlunos + ", listDocentes=" + listDocentes + ", listExames=" + listExames + '}';
     }
 
     public String getNome() {
@@ -39,7 +47,7 @@ public class Disciplina {
             if(index!=0){
                 System.out.print("-> ");
                 while(true){
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao>0 && opcao<=index) break;
                     System.out.println("Opção Inválida");
                 }
@@ -54,7 +62,7 @@ public class Disciplina {
                 }
                 System.out.print("Deseja adicionar mais algum docente a esta disciplina?\n1 - Sim\n2 - Não\n->");
                 while(true){
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao==1 || opcao==2) break;
                     System.out.println("Opção Inválida");
                 }
@@ -84,7 +92,7 @@ public class Disciplina {
             if(index!=0){
                 System.out.print("-> ");
                 while(true){
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao>0 && opcao<=index) break;
                     System.out.println("Opção Inválida");
                 }
@@ -99,7 +107,7 @@ public class Disciplina {
                 }
                 System.out.print("Deseja adicionar mais algum aluno a esta disciplina?\n1 - Sim\n2 - Não\n->");
                 while(true){
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao==1 || opcao==2) break;
                     System.out.println("Opção Inválida");
                 }

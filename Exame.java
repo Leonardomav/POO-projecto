@@ -1,11 +1,13 @@
 package projeto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public abstract class Exame {
+public abstract class Exame implements Serializable{
     private final Calendar dataHora;
+
     private final int duracao; //minutos
     private final Sala sala;
     private ArrayList<Docente> listVigilantes;

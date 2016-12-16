@@ -12,34 +12,37 @@ public class Projeto {
         ArrayList<Docente> listDocentesGlobal = new ArrayList<Docente>();
         ArrayList<Sala> listSalas = new ArrayList<Sala>();
 
-        //carregarDeFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
+        carregarDeFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
         
         //hardcode para testes
         
-        listCursos.add(new Curso("LEI", "Mestrado", 5));
-        listAlunosGlobal.add(new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursos.get(0), "Normal"));
-        listAlunosGlobal.add(new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursos.get(0), "Normal"));
-        listAlunosGlobal.add(new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursos.get(0), "Normal"));
-        listDocentesGlobal.add(new Docente("Ernesto", "lol", "lol", 1, "lol"));
-        listDocentesGlobal.add(new Docente("Cordeiro", "lol", "lol", 2, "lol"));
-        listDocentesGlobal.add(new Docente("Vasco", "lol", "lol", 3, "lol"));
-        listCursos.get(0).addListDisciplina(new Disciplina("IPRP", 1));
-        listCursos.get(0).addListDisciplina(new Disciplina("POO", 2));
-        listCursos.get(0).getListDisciplina().get(0).addListAlunos(1111111111L);
-        listCursos.get(0).getListDisciplina().get(0).addListAlunos(2222222222L);
-        listCursos.get(0).getListDisciplina().get(1).addListAlunos(1111111111L);
-        listCursos.get(0).getListDisciplina().get(1).addListAlunos(2222222222L);
-        listCursos.get(0).getListDisciplina().get(0).addListDocentes(2);
-        listCursos.get(0).getListDisciplina().get(1).addListDocentes(1);
-        listSalas.add(new Sala("DEI", 1));
-        listSalas.add(new Sala("DEI", 2));
-        listSalas.add(new Sala("DEI", 3));
+//        listCursos.add(new Curso("LEI", "Mestrado", 5));
+//        listAlunosGlobal.add(new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursos.get(0), "Normal"));
+//        listAlunosGlobal.add(new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursos.get(0), "Normal"));
+//        listAlunosGlobal.add(new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursos.get(0), "Normal"));
+//        listDocentesGlobal.add(new Docente("Ernesto", "lol", "lol", 1, "lol"));
+//        listDocentesGlobal.add(new Docente("Cordeiro", "lol", "lol", 2, "lol"));
+//        listDocentesGlobal.add(new Docente("Vasco", "lol", "lol", 3, "lol"));
+//        listCursos.get(0).addListDisciplina(new Disciplina("IPRP", 1));
+//        listCursos.get(0).addListDisciplina(new Disciplina("POO", 2));
+//        listCursos.get(0).getListDisciplina().get(0).addListAlunos(1111111111L);
+//        listCursos.get(0).getListDisciplina().get(0).addListAlunos(2222222222L);
+//        listCursos.get(0).getListDisciplina().get(1).addListAlunos(1111111111L);
+//        listCursos.get(0).getListDisciplina().get(1).addListAlunos(2222222222L);
+//        listCursos.get(0).getListDisciplina().get(0).addListDocentes(2);
+//        listCursos.get(0).getListDisciplina().get(1).addListDocentes(1);
+//        listSalas.add(new Sala("DEI", 1));
+//        listSalas.add(new Sala("DEI", 2));
+//        listSalas.add(new Sala("DEI", 3));
         
 
-        
-        //guardarEmFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
+//        System.out.println(listCursos);
+//        System.out.println(listAlunosGlobal);
+//        System.out.println(listDocentesGlobal);
         
         menu(listCursos,listAlunosGlobal,listDocentesGlobal, listSalas);
+        
+        guardarEmFicheiro(listCursos, listAlunosGlobal, listDocentesGlobal);
         
     }
     
@@ -48,7 +51,7 @@ public class Projeto {
         while(flag==1){
             System.out.println("----------MENU----------");
             System.out.print("99 - ADMIN\n1 - Criar Exame\n2 - Configurar Sala\n3 - Convocar vigilantes ou funcionários\n4 - Inscrever alunos\n5 - Lançar notas\n6 - Listar Exames\n7 - Listar alunos de um exame\n8 - Listar exames de um aluno\n9 - Listar acossiados de um exame\n10 - Listar exames de um funcionário ou docente\n11 - Listar notas de um exame\n0 - Sair\nOpção: ");
-            opcao=get_int();
+            opcao=retornaInteiro();
             switch (opcao){
                 case 99:
                     setup(listCursos,listAlunosGlobal,listDocentesGlobal);
@@ -106,7 +109,7 @@ public class Projeto {
                 System.out.println(j + " - " + listCursos.get(j-1).getNome());
 
             System.out.print("-> ");
-            opcao=get_int();
+            opcao=retornaInteiro();
             if(opcao>0 && opcao<size_cursos+1) break;
             System.out.println("Opção Inválida");
         }
@@ -119,7 +122,7 @@ public class Projeto {
                 System.out.println(j + " - " + listDisp.get(j-1).getNome());
 
             System.out.print("-> ");
-            opcao=get_int();
+            opcao=retornaInteiro();
             if(opcao>0 && opcao<size_disp+1) break;
             System.out.println("Opção Inválida");
         }
@@ -137,18 +140,18 @@ public class Projeto {
         int duracao, flag, aux_int;
         
         System.out.print("Quantos cursos quer criar?\n-> ");
-        aux_int=get_int();
+        aux_int=retornaInteiro();
         
         for(int i = 0; i < aux_int; i++){
             do{
                 flag=1;
                 System.out.print("Nome do curso: ");
-                nome=get_string();
+                nome=retornaString();
                 System.out.print("Grau do curso: ");
-                grau=get_string();
+                grau=retornaString();
                 while(true){
                     System.out.print("Duração do curso: ");
-                    duracao=get_int();
+                    duracao=retornaInteiro();
                     if(duracao > 0) break;
                     System.out.println("Número Inválido");
                 }
@@ -180,34 +183,34 @@ public class Projeto {
         
         
         System.out.print("Quantos Alunos quer criar?\n-> ");
-        num=get_int();
+        num=retornaInteiro();
         
         for(int i=0; i<num; i++){
             do{
                 flag=1;
                 System.out.print("Nome do Aluno: ");
-                nome=get_string();
+                nome=retornaString();
                 
                 System.out.print("Email do Aluno: ");
-                email=get_string();
+                email=retornaString();
                 
                 while(true){
                     System.out.print("Numero do Aluno: ");
-                    numeroEst=get_int();
+                    numeroEst=retornaInteiro();
                     if((String.valueOf(numeroEst).length())==6) break;
                     System.out.println("Número Inválido");
                 }
                
                 while(true){
                     System.out.print("Ano de matriculo do Aluno: ");
-                    anoMatricula=get_int();
+                    anoMatricula=retornaInteiro();
                     if((String.valueOf(anoMatricula).length())==4) break;
                     System.out.println("Número Inválido");
                 }
                 
                 while(true){
                     System.out.print("Regime do Aluno:\n1 - Normal\n2 - Trabalhador-Estudante\n3 - Atleta\n4 - Dirigente associativo\n5 - Erasmus\n-> ");
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao>0 && opcao<6) break;
                     System.out.println("Opção Inválida");
                 }
@@ -239,7 +242,7 @@ public class Projeto {
                 
                 while(true){
                     System.out.print("-> ");
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao>0 && opcao<size_cursos+1) break;
                     System.out.println("Opção Inválida");
                 }
@@ -275,20 +278,20 @@ public class Projeto {
         
         
         System.out.print("Quantos docentes quer criar?\n-> ");
-        aux_int=get_int();
+        aux_int=retornaInteiro();
         for(int i=0; i<aux_int; i++){
             do{
                 flag=1;
                 System.out.print("Nome do Docente: ");
-                nome=get_string();
+                nome=retornaString();
                 System.out.print("Email do Docente: ");
-                email=get_string();
+                email=retornaString();
                 System.out.print("Area de Investigação do Docente: ");
-                areaInv=get_string();
+                areaInv=retornaString();
                 System.out.print("Numero do Docente: ");
-                numero=get_int();
+                numero=retornaInteiro();
                 System.out.print("Categoria do Docente: ");
-                categoria=get_string();
+                categoria=retornaString();
 
                 size=listDocentesGlobal.size();
                 for(int j=0; i<size;j++){
@@ -324,7 +327,7 @@ public class Projeto {
 
             while(true){
                 System.out.print("-> ");
-                opcao=get_int();
+                opcao=retornaInteiro();
                 if(opcao>0 && opcao<size_cursos+1) break;
                 System.out.println("Opção Inválida");
             }
@@ -333,7 +336,7 @@ public class Projeto {
            
             while(true){
                 System.out.print("Quer adicionar quantas disciplinas?\n-> ");
-                opcao=get_int();
+                opcao=retornaInteiro();
                 if(opcao>0) break;
                 System.out.println("Opção Inválida");
             }
@@ -344,7 +347,7 @@ public class Projeto {
             
             while(true){
                 System.out.print("Quer adicionar disciplinas a mais algum curso?\n1 - Sim\n2 - Não\n-> ");
-                opcao=get_int();
+                opcao=retornaInteiro();
                 if(opcao==1 || opcao==2) break;
                 System.out.println("Opção Inválida");
             }
@@ -368,7 +371,7 @@ public class Projeto {
                     System.out.println(j + " - " + listCursos.get(j-1).getNome());
                 
                 System.out.print("-> ");
-                opcao=get_int();
+                opcao=retornaInteiro();
                 if(opcao>0 && opcao<size_cursos+1) break;
                 System.out.println("Opção Inválida");
             }
@@ -382,7 +385,7 @@ public class Projeto {
                     System.out.println(j + " - " + listDisp.get(j-1).getNome());
                 
                 System.out.print("-> ");
-                opcao=get_int();
+                opcao=retornaInteiro();
                 if(opcao>0 && opcao<size_disp+1) break;
                 System.out.println("Opção Inválida");
             }
@@ -393,7 +396,7 @@ public class Projeto {
             
             while(true){
                 System.out.print("Deseja Adicionar algo a mais alguma disciplina?\n1 - Sim\n2 - Não\n-> ");
-                opcao=get_int();
+                opcao=retornaInteiro();
                 if(opcao==1 || opcao==2) break;
                 System.out.println("Opção Inválida");
             }
@@ -410,12 +413,22 @@ public class Projeto {
         
     }
     
-    public static int get_int(){
+    public static int retornaInteiro(){
         Scanner sc = new Scanner(System.in);
-        return sc.nextInt();
+        String aux;
+        int num;
+        while (true) {
+            aux = sc.nextLine();
+            try {
+                num = Integer.parseInt(aux);
+                return num;
+            } catch (NumberFormatException e) {
+                System.out.println("Input inválido. Introduza um inteiro: ");
+            }
+        }
     }
     
-    public static String get_string(){
+    public static String retornaString(){
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
@@ -441,16 +454,17 @@ public class Projeto {
         FicheiroDeObjectos fo = new FicheiroDeObjectos();
         
         fo.abreLeitura("cursos.dat");
-        listCursos = (ArrayList<Curso>) fo.leObjecto();
+        listCursos.addAll((ArrayList<Curso>) fo.leObjecto());
         fo.fechaLeitura();
         
         fo.abreLeitura("alunos.dat");
-        listAlunosGlobal = (ArrayList<Aluno>) fo.leObjecto();
+        listAlunosGlobal.addAll((ArrayList<Aluno>) fo.leObjecto());
         fo.fechaLeitura();
         
         fo.abreLeitura("docentes.dat");
-        listDocentesGlobal = (ArrayList<Docente>) fo.leObjecto();
+        listDocentesGlobal.addAll((ArrayList<Docente>) fo.leObjecto());
         fo.fechaLeitura();
+        
     }
     
     public static void setup(ArrayList<Curso> listCursos, ArrayList<Aluno> listAlunosGlobal, ArrayList<Docente> listDocentesGlobal){
