@@ -3,11 +3,11 @@ package projeto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 public class ExameE extends Exame implements Serializable{
 
-    public ExameE(Date dataHora, int duracao, Sala sala) {
+    public ExameE(Calendar dataHora, int duracao, Sala sala) {
         super(dataHora, duracao, sala);
     }
 

@@ -2,10 +2,12 @@ package projeto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+
 
 public abstract class Exame implements Serializable{
-    private final Date dataHora;
+    private final Calendar dataHora;
+
     private final int duracao; //minutos
     private final Sala sala;
     private ArrayList<Docente> listVigilantes;
@@ -13,10 +15,18 @@ public abstract class Exame implements Serializable{
     private ArrayList<Integer> listAlunos;
     private ArrayList<Float> listNotas;
 
-    public Exame(Date dataHora, int duracao, Sala sala) {
+    public Exame(Calendar dataHora, int duracao, Sala sala) {
         this.dataHora = dataHora;
         this.duracao = duracao;
         this.sala = sala;
+    }
+
+    public Calendar getDataHora() {
+        return dataHora;
+    }
+
+    public int getDuracao() {
+        return duracao;
     }
     
     

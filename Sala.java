@@ -12,6 +12,17 @@ public class Sala {
         this.departamento = departamento;
         this.numero = numero;
     }
-   
-   
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public ArrayList<Exame> getExames() {
+        return exames;
+    }
+
 }
