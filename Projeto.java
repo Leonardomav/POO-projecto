@@ -420,15 +420,16 @@ public class Projeto {
         Boolean flag;
         do {
             flag=false;
-            aux = sc.next();
+            aux = sc.nextLine();
             try {
                 num = Integer.parseInt(aux);
                 return num;
             } catch (NumberFormatException e) {
+                System.out.println("Input inválido. Introduza um inteiro: ");
                 flag=true;
             }
         } while (flag);
-        return -1;
+        return -1;    
     }
     
     public static String retornaString(){
