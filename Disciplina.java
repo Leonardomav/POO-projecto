@@ -30,8 +30,8 @@ public class Disciplina implements Serializable{
         return nome;
     }
     
-    public void addDocentes(ArrayList<Docente> listDocentesGlobal){
-        int size_global=listDocentesGlobal.size();
+    public void addDocentes(ArrayList<Funcionario> listFuncionariosGlobal){
+        int size_global=listFuncionariosGlobal.size();
         int index, flag=1, opcao;
         
         
@@ -39,9 +39,11 @@ public class Disciplina implements Serializable{
         while(flag==1){
             index=0;
             for (int j = 1; j <= size_global; j++){
-                if((!(listDocentes.contains(listDocentesGlobal.get(j-1).getNumeroMec())))&&(listDocentesGlobal.get(j-1).getNumeroMec()!=docenteResp)){
-                    index++;
-                    System.out.println(index + " - " + listDocentesGlobal.get(index-1).getNome());
+                if(listFuncionariosGlobal.get(j-1).getTipo()){
+                    if((!(listDocentes.contains(listFuncionariosGlobal.get(j-1).getNumeroMec())))&&(listFuncionariosGlobal.get(j-1).getNumeroMec()!=docenteResp)){
+                        index++;
+                        System.out.println(index + " - " + listFuncionariosGlobal.get(index-1).getNome());
+                    }
                 }
             }
             if(index!=0){
@@ -53,10 +55,12 @@ public class Disciplina implements Serializable{
                 }
                 index=0;
                 for (int j = 1; j <= size_global; j++){
-                    if(!(listDocentes.contains(listDocentesGlobal.get(j-1).getNumeroMec()))){
-                        index++;
-                        if(index==opcao){
-                            listDocentes.add(listDocentesGlobal.get(j-1).getNumeroMec());
+                    if(listFuncionariosGlobal.get(j-1).getTipo()){
+                        if(!(listDocentes.contains(listFuncionariosGlobal.get(j-1).getNumeroMec()))){
+                            index++;
+                            if(index==opcao){
+                                listDocentes.add(listFuncionariosGlobal.get(j-1).getNumeroMec());
+                            }
                         }
                     }
                 }
