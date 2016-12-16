@@ -3,7 +3,7 @@ package projeto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import static projeto.Projeto.get_int;
+import static projeto.Projeto.retornaInteiro;
 
 public class Disciplina implements Serializable{
     private final String nome;
@@ -43,7 +43,7 @@ public class Disciplina implements Serializable{
             if(index!=0){
                 System.out.print("-> ");
                 while(true){
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao>0 && opcao<=index) break;
                     System.out.println("Opção Inválida");
                 }
@@ -58,7 +58,7 @@ public class Disciplina implements Serializable{
                 }
                 System.out.print("Deseja adicionar mais algum docente a esta disciplina?\n1 - Sim\n2 - Não\n->");
                 while(true){
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao==1 || opcao==2) break;
                     System.out.println("Opção Inválida");
                 }
@@ -88,7 +88,7 @@ public class Disciplina implements Serializable{
             if(index!=0){
                 System.out.print("-> ");
                 while(true){
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao>0 && opcao<=index) break;
                     System.out.println("Opção Inválida");
                 }
@@ -103,7 +103,7 @@ public class Disciplina implements Serializable{
                 }
                 System.out.print("Deseja adicionar mais algum aluno a esta disciplina?\n1 - Sim\n2 - Não\n->");
                 while(true){
-                    opcao=get_int();
+                    opcao=retornaInteiro();
                     if(opcao==1 || opcao==2) break;
                     System.out.println("Opção Inválida");
                 }
