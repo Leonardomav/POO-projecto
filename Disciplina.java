@@ -2,6 +2,8 @@
 package projeto;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import static projeto.Projeto.get_int;
 
 public class Disciplina {
@@ -111,9 +113,65 @@ public class Disciplina {
     }
     
     public void criaExame( ArrayList<Sala> listSalas){
-        int ano, mes, dia, hora, min;
+        int ano, mes, dia, hora, min, flag, duracao, size_salas, opcao=0, aux_dur;
+        Sala sala_aux;
+        Exame exames_aux;
+        Calendar data_aux, dataplus, dataplus_aux;
+        Calendar data = new GregorianCalendar();
+
+        
+        size_salas = listSalas.size();
+        
+        do{
+            System.out.print("Ano:");
+            ano=get_int();
+            System.out.print("Mes:");
+            mes=get_int();
+            System.out.println("Dia:");
+            dia=get_int();
+            System.out.println("Hora");  
+            hora=get_int();
+            System.out.println("Min");
+            min=get_int();
+            flag=dataValida(dia, mes, ano, hora,  min);
+        }while(flag==0);
+        data.clear();
+        data.set(ano,mes-1,dia,hora,min);
+        
+        flag=0;
+        do{
+            System.out.print("Duração em minutos:");
+            duracao=get_int();
+            if(duracao>0) flag=1;
+        }while(flag==0);
+        
+        
+    
+        do{
+            System.out.println("Exame em que sala: ");
+            for(int i=1; i<=size_salas; i++){
+                System.out.println(i + " - " + listSalas.get(i-1).getDepartamento() + " - " + listSalas.get(i-1).getNumero());
+            }
+
+            System.out.print("-> ");
+            opcao=get_int();
+            if(opcao>0 && opcao<size_salas+1) flag=0;
+            System.out.println("Opção Inválida");
+        
+            dataplus=data;
+            dataplus.add(Calendar.MINUTE, duracao);
+            for(int i=0;i<listSalas.get(opcao-1).getExames().size(); i++){
+                exames_aux=listSalas.get(opcao-1).getExames().get(i);
+                data_aux=exames_aux.getDataHora();
+                aux_dur=exames_aux.getDuracao();
+                dataplus_aux=data_aux;
+                dataplus_aux.add(Calendar.MINUTE, aux_dur);
+                flag=checkSalas(data, dataplus, data_aux, dataplus_aux);
+            }
+        }while(flag==0);
         
         System.out.println("Deseja Criar um Exame :\n1 - Normal\n2 - Recurso\n3 - Especial");
+        //........
         
     }
 
@@ -123,6 +181,52 @@ public class Disciplina {
 
     public void addListDocentes(int Docente) {
         this.listDocentes.add(Docente);
+    }
+    
+    //*****************************************mudar esta funçao*************************************************
+    private static int dataValida(int dd, int mm, int yy, int hora, int min) {
+        int bissextile;
+        if (yy%4==0)
+            bissextile=1;
+        else
+            bissextile=0;
+        if (yy==-1) {
+            System.out.println("Data Invalida.\n");
+            return 0;
+        }
+ 
+        if(dd > 31 || dd < 1 || mm > 12 || mm < 1) {
+            System.out.println("Data Invalida.\n");
+            return 0;
+        }
+        else if(mm == 2 && dd < 30 && bissextile==1 && (hora >= 0 && hora <= 23) && (min >= 0 && min <= 59) || mm == 2 && dd < 29 && bissextile==1) {
+            return 1;
+        } else if((mm == 4 || mm == 6 || mm == 9 || mm == 11) && dd < 31 && (hora >= 0 && hora <= 23) && (min >= 0 && min <= 59)) {
+            return 1;
+        } else if(dd < 31 && mm != 2 && (hora >= 0 && hora <= 23) && (min >= 0 && min <= 59)) {
+            return 1;
+        } else {
+            System.out.println("Data Invalida.\n");
+            return 0;
+        }
+    }
+    
+    private static int checkSalas(Calendar data, Calendar dataplus, Calendar data_aux, Calendar dataplus_aux){
+        int compare;
+        compare = data.compareTo(data_aux);
+        if(compare==0) return 0;
+        else if(compare <0){ //data antes de data_aux
+            compare=dataplus.compareTo(data_aux);
+            if(compare==0) return 1;
+            else if(compare <0) return 1;
+            else return 0;
+        }
+        else{ //data depois de data_aux
+            compare=data.compareTo(dataplus_aux);
+            if(compare==0) return 1;
+            else if(compare <0) return 0;
+            else return 1;
+        }
     }
 
 }

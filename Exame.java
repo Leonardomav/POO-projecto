@@ -18,6 +18,14 @@ public abstract class Exame {
         this.duracao = duracao;
         this.sala = sala;
     }
+
+    public Calendar getDataHora() {
+        return dataHora;
+    }
+
+    public int getDuracao() {
+        return duracao;
+    }
     
     
     public void defineNotas(){
