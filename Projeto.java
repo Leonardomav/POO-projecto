@@ -51,7 +51,7 @@ public class Projeto {
         while(flag==1){
             System.out.println("----------MENU----------");
             System.out.print("99 - ADMIN\n1 - Criar Exame\n2 - Configurar Sala\n3 - Convocar vigilantes ou funcionários\n4 - Inscrever alunos\n5 - Lançar notas\n6 - Listar Exames\n7 - Listar alunos de um exame\n8 - Listar exames de um aluno\n9 - Listar acossiados de um exame\n10 - Listar exames de um funcionário ou docente\n11 - Listar notas de um exame\n0 - Sair\nOpção: ");
-            opcao=retornaInteiro();
+            opcao=get_int();
             switch (opcao){
                 case 99:
                     setup(listCursos,listAlunosGlobal,listDocentesGlobal);
@@ -109,7 +109,7 @@ public class Projeto {
                 System.out.println(j + " - " + listCursos.get(j-1).getNome());
 
             System.out.print("-> ");
-            opcao=retornaInteiro();
+            opcao=get_int();
             if(opcao>0 && opcao<size_cursos+1) break;
             System.out.println("Opção Inválida");
         }
@@ -122,7 +122,7 @@ public class Projeto {
                 System.out.println(j + " - " + listDisp.get(j-1).getNome());
 
             System.out.print("-> ");
-            opcao=retornaInteiro();
+            opcao=get_int();
             if(opcao>0 && opcao<size_disp+1) break;
             System.out.println("Opção Inválida");
         }
@@ -140,18 +140,18 @@ public class Projeto {
         int duracao, flag, aux_int;
         
         System.out.print("Quantos cursos quer criar?\n-> ");
-        aux_int=retornaInteiro();
+        aux_int=get_int();
         
         for(int i = 0; i < aux_int; i++){
             do{
                 flag=1;
                 System.out.print("Nome do curso: ");
-                nome=retornaString();
+                nome=get_string();
                 System.out.print("Grau do curso: ");
-                grau=retornaString();
+                grau=get_string();
                 while(true){
                     System.out.print("Duração do curso: ");
-                    duracao=retornaInteiro();
+                    duracao=get_int();
                     if(duracao > 0) break;
                     System.out.println("Número Inválido");
                 }
@@ -183,34 +183,34 @@ public class Projeto {
         
         
         System.out.print("Quantos Alunos quer criar?\n-> ");
-        num=retornaInteiro();
+        num=get_int();
         
         for(int i=0; i<num; i++){
             do{
                 flag=1;
                 System.out.print("Nome do Aluno: ");
-                nome=retornaString();
+                nome=get_string();
                 
                 System.out.print("Email do Aluno: ");
-                email=retornaString();
+                email=get_string();
                 
                 while(true){
                     System.out.print("Numero do Aluno: ");
-                    numeroEst=retornaInteiro();
+                    numeroEst=get_int();
                     if((String.valueOf(numeroEst).length())==6) break;
                     System.out.println("Número Inválido");
                 }
                
                 while(true){
                     System.out.print("Ano de matriculo do Aluno: ");
-                    anoMatricula=retornaInteiro();
+                    anoMatricula=get_int();
                     if((String.valueOf(anoMatricula).length())==4) break;
                     System.out.println("Número Inválido");
                 }
                 
                 while(true){
                     System.out.print("Regime do Aluno:\n1 - Normal\n2 - Trabalhador-Estudante\n3 - Atleta\n4 - Dirigente associativo\n5 - Erasmus\n-> ");
-                    opcao=retornaInteiro();
+                    opcao=get_int();
                     if(opcao>0 && opcao<6) break;
                     System.out.println("Opção Inválida");
                 }
@@ -242,7 +242,7 @@ public class Projeto {
                 
                 while(true){
                     System.out.print("-> ");
-                    opcao=retornaInteiro();
+                    opcao=get_int();
                     if(opcao>0 && opcao<size_cursos+1) break;
                     System.out.println("Opção Inválida");
                 }
@@ -278,20 +278,20 @@ public class Projeto {
         
         
         System.out.print("Quantos docentes quer criar?\n-> ");
-        aux_int=retornaInteiro();
+        aux_int=get_int();
         for(int i=0; i<aux_int; i++){
             do{
                 flag=1;
                 System.out.print("Nome do Docente: ");
-                nome=retornaString();
+                nome=get_string();
                 System.out.print("Email do Docente: ");
-                email=retornaString();
+                email=get_string();
                 System.out.print("Area de Investigação do Docente: ");
-                areaInv=retornaString();
+                areaInv=get_string();
                 System.out.print("Numero do Docente: ");
-                numero=retornaInteiro();
+                numero=get_int();
                 System.out.print("Categoria do Docente: ");
-                categoria=retornaString();
+                categoria=get_string();
 
                 size=listDocentesGlobal.size();
                 for(int j=0; i<size;j++){
@@ -327,7 +327,7 @@ public class Projeto {
 
             while(true){
                 System.out.print("-> ");
-                opcao=retornaInteiro();
+                opcao=get_int();
                 if(opcao>0 && opcao<size_cursos+1) break;
                 System.out.println("Opção Inválida");
             }
@@ -336,7 +336,7 @@ public class Projeto {
            
             while(true){
                 System.out.print("Quer adicionar quantas disciplinas?\n-> ");
-                opcao=retornaInteiro();
+                opcao=get_int();
                 if(opcao>0) break;
                 System.out.println("Opção Inválida");
             }
@@ -347,7 +347,7 @@ public class Projeto {
             
             while(true){
                 System.out.print("Quer adicionar disciplinas a mais algum curso?\n1 - Sim\n2 - Não\n-> ");
-                opcao=retornaInteiro();
+                opcao=get_int();
                 if(opcao==1 || opcao==2) break;
                 System.out.println("Opção Inválida");
             }
@@ -371,7 +371,7 @@ public class Projeto {
                     System.out.println(j + " - " + listCursos.get(j-1).getNome());
                 
                 System.out.print("-> ");
-                opcao=retornaInteiro();
+                opcao=get_int();
                 if(opcao>0 && opcao<size_cursos+1) break;
                 System.out.println("Opção Inválida");
             }
@@ -385,7 +385,7 @@ public class Projeto {
                     System.out.println(j + " - " + listDisp.get(j-1).getNome());
                 
                 System.out.print("-> ");
-                opcao=retornaInteiro();
+                opcao=get_int();
                 if(opcao>0 && opcao<size_disp+1) break;
                 System.out.println("Opção Inválida");
             }
@@ -396,7 +396,7 @@ public class Projeto {
             
             while(true){
                 System.out.print("Deseja Adicionar algo a mais alguma disciplina?\n1 - Sim\n2 - Não\n-> ");
-                opcao=retornaInteiro();
+                opcao=get_int();
                 if(opcao==1 || opcao==2) break;
                 System.out.println("Opção Inválida");
             }
@@ -413,22 +413,12 @@ public class Projeto {
         
     }
     
-    public static int retornaInteiro(){
+    public static int get_int(){
         Scanner sc = new Scanner(System.in);
-        String aux;
-        int num;
-        while (true) {
-            aux = sc.nextLine();
-            try {
-                num = Integer.parseInt(aux);
-                return num;
-            } catch (NumberFormatException e) {
-                System.out.println("Input inválido. Introduza um inteiro: ");
-            }
-        }
+        return sc.nextInt();
     }
     
-    public static String retornaString(){
+    public static String get_string(){
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
