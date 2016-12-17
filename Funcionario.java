@@ -33,6 +33,10 @@ public abstract class Funcionario extends Pessoa implements Serializable{
         return vigilancias;
     }
     
+    public void addVigilancias(Exame novoExame) {
+        vigilancias.add(novoExame);
+    }
+    
     
     
     
