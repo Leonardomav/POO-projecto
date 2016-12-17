@@ -11,12 +11,12 @@ import static projeto.Projeto.retornaInteiro;
 
 public class Disciplina implements Serializable{
     private final String nome;
-    private final int docenteResp;
-    private ArrayList<Long> listAlunos = new ArrayList<Long>();
-    private ArrayList<Integer> listDocentes = new ArrayList<Integer>();
+    private final Docente docenteResp;
+    private ArrayList<Aluno> listAlunos = new ArrayList<Aluno>();
+    private ArrayList<Docente> listDocentes = new ArrayList<Docente>();
     private ArrayList<Exame> listExames = new ArrayList<Exame>();
 
-    public Disciplina(String nome, int docenteResp) {
+    public Disciplina(String nome, Docente docenteResp) {
        this.nome=nome;
        this.docenteResp=docenteResp;
     }
@@ -30,37 +30,16 @@ public class Disciplina implements Serializable{
         return nome;
     }
 
-    public int getDocenteResp() {
+    public Docente getDocenteResp() {
         return docenteResp;
     }
 
-    public ArrayList<Aluno> getListAlunos(ArrayList<Aluno> listAlunosGlobal) {
-        ArrayList<Aluno> listFinalAlunos = new ArrayList<Aluno>();
-        int i, j, sizeFinal, sizeGlobal;
-        float auxFloat;
-        
-        sizeFinal = listAlunos.size();
-        sizeGlobal = listAlunosGlobal.size();
-        
-        for(i=0; i<sizeFinal; i++){
-            auxFloat=listAlunos.get(i);
-            for(j=0; j<sizeGlobal; j++){
-                if(listAlunosGlobal.get(j).getNumeroEst() == auxFloat){
-                    listFinalAlunos.add(listAlunosGlobal.get(j));
-                    break;
-                }
-            }
-        }
-        
-        
-        
-        return listFinalAlunos;
+    public ArrayList<Aluno> getListAlunos() {
+            return listAlunos;
     }
 
-    public ArrayList<Docente> getListDocentes(ArrayList<Funcionario> listFuncionariosGlobal) {
-        ArrayList<Docente> listFinalDocentes = new ArrayList<Docente>();
-        //inacabado
-        return listFinalDocentes;
+    public ArrayList<Docente> getListDocentes() {
+        return listDocentes;
     }
 
     public ArrayList<Exame> getListExames() {
@@ -69,18 +48,20 @@ public class Disciplina implements Serializable{
     
     public void addDocentes(ArrayList<Funcionario> listFuncionariosGlobal){
         int size_global=listFuncionariosGlobal.size();
-        int index, flag=1, opcao;
+        int index, flag=1, opcao, i;
+        Docente auxDocente;
         
         
         System.out.println("Qual docente quer adicionar?");
         while(flag==1){
             index=0;
 
-            for (int j = 0; j < size_global; j++){
-                if(listFuncionariosGlobal.get(j).getTipo()){
-                    if((!(listDocentes.contains(listFuncionariosGlobal.get(j).getNumeroMec())))&&(listFuncionariosGlobal.get(j).getNumeroMec()!=docenteResp)){
+            for (i=0; i<size_global; i++){
+                if(listFuncionariosGlobal.get(i).getTipo()){
+                    auxDocente=(Docente) listFuncionariosGlobal.get(i);
+                    if((!(listDocentes.contains(auxDocente))) && (auxDocente!=docenteResp)){
                         index++;
-                        System.out.println(index + " - " + listFuncionariosGlobal.get(j).getNome());
+                        System.out.println(index + " - " + auxDocente.getNome());
                     }
                 }
             }
@@ -89,16 +70,17 @@ public class Disciplina implements Serializable{
                 while(true){
                     opcao=retornaInteiro();
                     if(opcao>0 && opcao<=index) break;
-                    System.out.println("Opção Inválida");
+                    System.out.println("Opção inválida");
                 }
                 index=0;
 
-                for (int j = 0; j < size_global; j++){
-                    if(listFuncionariosGlobal.get(j).getTipo()){
-                        if((!(listDocentes.contains(listFuncionariosGlobal.get(j).getNumeroMec())))&&(listFuncionariosGlobal.get(j).getNumeroMec()!=docenteResp)){
+                for (i=0; i < size_global; i++){
+                    if(listFuncionariosGlobal.get(i).getTipo()){
+                        auxDocente=(Docente) listFuncionariosGlobal.get(i);
+                        if((!(listDocentes.contains(auxDocente))) && (auxDocente!=docenteResp)){
                             index++;
                             if(index==opcao){
-                                listDocentes.add(listFuncionariosGlobal.get(j).getNumeroMec());
+                                listDocentes.add(auxDocente);
                                 break;
                             }
                         }
@@ -108,7 +90,7 @@ public class Disciplina implements Serializable{
                 while(true){
                     opcao=retornaInteiro();
                     if(opcao==1 || opcao==2) break;
-                    System.out.println("Opção Inválida");
+                    System.out.println("Opção inválida");
                 }
                 if(opcao==2) flag=0;
             }
@@ -120,17 +102,19 @@ public class Disciplina implements Serializable{
     }
     
     public void addAlunos(ArrayList<Aluno> listAlunosGlobal){
-        int size_global=listAlunosGlobal.size();
+        int i, size_global=listAlunosGlobal.size();
         int index, flag=1, opcao;
+        Aluno auxAluno;
         
         
         System.out.println("Qual aluno quer adicionar?");
         while(flag==1){
             index=0;
-            for (int j = 0; j < size_global; j++){
-                if(!(listAlunos.contains(listAlunosGlobal.get(j).getNumeroEst()))){
+            for (i=0; i<size_global; i++){
+                auxAluno=listAlunosGlobal.get(i);
+                if(!(listAlunos.contains(auxAluno))){
                     index++;
-                    System.out.println(index + " - " + listAlunosGlobal.get(j).getNome());
+                    System.out.println(index + " - " + auxAluno.getNome());
                 }
             }
             if(index!=0){
@@ -138,14 +122,15 @@ public class Disciplina implements Serializable{
                 while(true){
                     opcao=retornaInteiro();
                     if(opcao>0 && opcao<=index) break;
-                    System.out.println("Opção Inválida");
+                    System.out.println("Opção inválida");
                 }
                 index=0;
-                for (int j = 0; j < size_global; j++){
-                    if(!(listAlunos.contains(listAlunosGlobal.get(j).getNumeroEst()))){
+                for (i = 0; i < size_global; i++){
+                    auxAluno=listAlunosGlobal.get(i);
+                    if(!(listAlunos.contains(auxAluno))){
                         index++;
                         if(index==opcao){
-                            listAlunos.add(listAlunosGlobal.get(j).getNumeroEst());
+                            listAlunos.add(auxAluno);
                             break;
                         }
                     }
@@ -154,7 +139,7 @@ public class Disciplina implements Serializable{
                 while(true){
                     opcao=retornaInteiro();
                     if(opcao==1 || opcao==2) break;
-                    System.out.println("Opção Inválida");
+                    System.out.println("Opção inválida");
                 }
                 if(opcao==2) flag=0;
             }
@@ -266,14 +251,12 @@ public class Disciplina implements Serializable{
         }
     }
 
-    public void addListAlunos(long aluno) {
+    public void addListAlunos(Aluno aluno) {
         this.listAlunos.add(aluno);
-        //mudar para receber aluno e ir buscar o long
     }
 
-    public void addListDocentes(int docente) {
+    public void addListDocentes(Docente docente) {
         this.listDocentes.add(docente);
-        //mudar para receber docente e ir buscar o int
     }
     
     //*****************************************mudar esta funçao*************************************************

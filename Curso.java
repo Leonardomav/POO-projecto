@@ -25,8 +25,9 @@ public class Curso implements Serializable{
     public void criaDisciplina(ArrayList<Funcionario> listFuncionariosGlobal){
         int size_func = listFuncionariosGlobal.size();
         int size_disp = listDisciplina.size();
-        int opcao, docenteResp, flag;
+        int opcao, flag;
         String nome_disp;
+        Docente auxDocente;
         
         do{
             flag=1;
@@ -41,7 +42,7 @@ public class Curso implements Serializable{
             }
         }while(flag==0);
         
-        System.out.println("Pofessor Responsável:");
+        System.out.println("Pofessor responsável:");
         for (int j = 1; j <= size_func; j++)
             if(listFuncionariosGlobal.get(j-1).getTipo())
                 System.out.println(j + " - " + listFuncionariosGlobal.get(j-1).getNome() + " - " + listFuncionariosGlobal.get(j-1).getNumeroMec());
@@ -50,13 +51,13 @@ public class Curso implements Serializable{
             System.out.print("-> ");
             opcao=retornaInteiro();
             if(opcao>0 && opcao<size_func+1) break;
-            System.out.println("Opção Inválida");
+            System.out.println("Opção inválida");
         }
         
-        docenteResp = listFuncionariosGlobal.get(opcao-1).getNumeroMec();
-        Disciplina nova_disp = new Disciplina(nome_disp, docenteResp);
+        auxDocente = (Docente) listFuncionariosGlobal.get(opcao-1);
+        Disciplina nova_disp = new Disciplina(nome_disp, auxDocente);
         listDisciplina.add(nova_disp);
-        System.out.println("Disciplina Adicionada.");
+        System.out.println("Disciplina adicionada.");
     }
 
     public String getNome() {

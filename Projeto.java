@@ -17,29 +17,37 @@ public class Projeto {
         //hardcode para testes
         
 //        listCursosGlobal.add(new Curso("LEI", "Mestrado", 5));
-//        listAlunosGlobal.add(new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursosGlobal.get(0), "Normal"));
-//        listAlunosGlobal.add(new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursosGlobal.get(0), "Normal"));
-//        listAlunosGlobal.add(new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursosGlobal.get(0), "Normal"));
-//        listAlunosGlobal.add(new Aluno("O outro", "Dali",4444444444L, 2012, listCursosGlobal.get(0), "Normal"));
-//        listFuncionariosGlobal.add(new Docente("Ernesto", "lol", "lol", 1, "lol"));
-//        listFuncionariosGlobal.add(new Docente("Cordeiro", "lol", "lol", 2, "lol"));
-//        listFuncionariosGlobal.add(new Docente("Vasco", "lol", "lol", 3, "lol"));
-//        listFuncionariosGlobal.add(new Docente("Douradinho", "lol", "lol", 4, "lol"));
-//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("IPRP", 1));
-//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("POO", 2));
-//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("PPP", 3));
-//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(1111111111L);
-//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(2222222222L);
-//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(1111111111L);
-//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(2222222222L);
-//        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(2);
-//        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(1);
+//        Aluno leo = new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(leo);
+//        Aluno tiago = new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(tiago);
+//        Aluno artur = new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(artur);
+//        Aluno outro = new Aluno("O outro", "Dali",4444444444L, 2012, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(outro);
+//        Docente ernesto = new Docente("Ernesto", "lol", "lol", 1, "lol");
+//        listFuncionariosGlobal.add(ernesto);
+//        Docente cordeiro = new Docente("Cordeiro", "lol", "lol", 2, "lol");
+//        listFuncionariosGlobal.add(cordeiro);
+//        Docente vasco = new Docente("Vasco", "lol", "lol", 3, "lol");
+//        listFuncionariosGlobal.add(vasco);
+//        Docente douradinho = new Docente("Douradinho", "lol", "lol", 4, "lol");
+//        listFuncionariosGlobal.add(douradinho);
+//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("IPRP", ernesto));
+//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("POO", cordeiro));
+//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("PPP", vasco));
+//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(leo);
+//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(tiago);
+//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(leo);
+//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(tiago);
+//        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(cordeiro);
+//        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(ernesto);
         listSalas.add(new Sala("DEI", 1));
         listSalas.add(new Sala("DEI", 2));
         listSalas.add(new Sala("DEI", 3));
         
 
-        System.out.println(listCursosGlobal);
+//        System.out.println(listCursosGlobal);
 //        System.out.println(listAlunosGlobal);
 //        System.out.println(listFuncionariosGlobal);
         
@@ -491,7 +499,7 @@ public class Projeto {
         }
 
 
-        listAlun = listDisp.get(opcao-1).getListAlunos(listAlunosGlobal);
+        listAlun = listDisp.get(opcao-1).getListAlunos();
         size_alunos=listAlun.size();
         
         //INACABADO
