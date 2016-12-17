@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import static projeto.Projeto.retornaFloat;
 
 
 public abstract class Exame implements Serializable{
@@ -28,8 +29,8 @@ public abstract class Exame implements Serializable{
     
     @Override
     public String toString() {
-        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return "Exame{" + "dataHora=" + formatter.format(getDataHora().getTime()) + ", duracao=" + duracao + ", sala=" + sala + ", listVigilantes=" + listVigilantes + ", listFuncionarios=" + listNaoDocente + ", listAlunos=" + listAlunos + ", listNotas=" + listNotas + ", tipo=" + tipo + '}';
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return "Exame na data " + formatter.format(getDataHora().getTime()) + " com duracao de " + duracao + "min, na sala=" + sala + ", tipo=" + tipo;
     }
     
     public void addListAlunos(Aluno novoAluno){
@@ -82,27 +83,18 @@ public abstract class Exame implements Serializable{
     
     
     public void defineNotas(){
+        int i, sizeAlun;
         
-    }
-    
-    public void imprimeAlunosInscritos(){
-        
-    }
-    
-    public void imprimeFuncConvocados(){
-        
-    }
-    
-    public void imprimeNotas(ArrayList<Sala> listSala){
-        
-    }
-    
-    public void escolheDecentes(ArrayList<Docente> listDocente){
-        
-    }
-    
-    public void escolheNaoDocente(ArrayList<NaoDocente> listNaoDocente){
-        
+        sizeAlun = listAlunos.size();
+        if(sizeAlun == 0){
+            System.out.println("Não existem alunos inscritos neste exame.");
+            return;
+        }
+        System.out.println("Insira as notas dos alunos:");
+        for(i=0; i<sizeAlun; i++){
+            System.out.print("\tAluno " + i + ": " + listAlunos.get(i) + "\n\tNota: ");
+            listNotas.add(retornaFloat());
+        }
     }
   
     public abstract Aluno inscreveAluno(ArrayList<Aluno> listAlunos, Disciplina auxDisciplina);
@@ -110,4 +102,12 @@ public abstract class Exame implements Serializable{
     public void setSala(Sala sala) {
         this.sala = sala;
     }
+
+    void imprimeFuncionarios() {
+        System.out.println("Docentes:");
+        System.out.println(listVigilantes);
+        System.out.println("Nao Docentes");
+        System.out.println(listNaoDocente);
+    }
+
 }

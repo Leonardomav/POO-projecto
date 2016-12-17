@@ -8,7 +8,7 @@ public class Aluno extends Pessoa implements Serializable{
     private final long numeroEst;
     private final Curso curso;
     private final String regime;
-    private ArrayList<Exame> inscricoes;
+    private final ArrayList<Exame> inscricoes;
 
     public Aluno(String nome, String email, long numeroEst, int anoMatricula, Curso curso, String regime) {
         super(nome, email);
@@ -21,7 +21,7 @@ public class Aluno extends Pessoa implements Serializable{
 
     @Override
     public String toString() {
-        return "Aluno{" + "anoMatricula=" + anoMatricula + ", numeroEst=" + numeroEst + ", curso=" + curso + ", regime=" + regime + '}';
+        return getNome() + " - " + numeroEst;
     }
     
     public void addListInscricoes(Exame novoExame){

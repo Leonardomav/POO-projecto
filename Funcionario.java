@@ -16,6 +16,14 @@ public abstract class Funcionario extends Pessoa implements Serializable{
         this.categoria = categoria;
         this.tipo = tipo;
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
     
     public void imprimeExames(ArrayList<Curso> listaCursos){
         
