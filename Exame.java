@@ -81,7 +81,9 @@ public abstract class Exame implements Serializable{
         return tipo;
     }
     
-    
+    /**
+     * Define notas deste exame.
+     */
     public void defineNotas(){
         int i, sizeAlun;
         
@@ -102,7 +104,9 @@ public abstract class Exame implements Serializable{
     public void setSala(Sala sala) {
         this.sala = sala;
     }
-
+    /**
+     * Imprime funcionarios deste exame.
+     */
     void imprimeFuncionarios() {
         System.out.println("Docentes:");
         System.out.println(listVigilantes);

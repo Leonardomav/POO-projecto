@@ -10,7 +10,13 @@ public class ExameE extends Exame implements Serializable{
     public ExameE(Calendar dataHora, int duracao, ArrayList<Docente> listVigilantes) {
         super(dataHora, duracao,listVigilantes, 2);
     }
-
+    /**
+     * Inscreve alunos neste exame.
+     * 
+     * @param listAlunos lista de alunos global
+     * @param auxDisciplina disciplina do exame
+     * @return 
+     */
     @Override
     public Aluno inscreveAluno(ArrayList<Aluno> listAlunos, Disciplina auxDisciplina) {
         int i, opcao, index, sizeAlunos, auxInt;

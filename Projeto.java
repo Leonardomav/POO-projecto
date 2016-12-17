@@ -56,7 +56,7 @@ public class Projeto {
         
     }
     /**
-    * Método que apresenta o menu e reencaminha para a função pretendida
+    * Método que apresenta o menu e reencaminha para a função pretendida.
     * para realizar a operação. 
     * 
     * @param  listCursosGlobal lista global de curos
@@ -112,7 +112,7 @@ public class Projeto {
         
     }
     /**
-    * . Método utilizada para escolher um curso e uma disciplina desse curso
+    * Método utilizada para escolher um curso e uma disciplina desse curso.
     * 
     * @param  listCursosGlobal lista global de curos
     * @param  listSalas lista global de salas
@@ -204,7 +204,7 @@ public class Projeto {
     }
     
     /**
-    * . Método utilizada para criar um novo curso
+    * Método utilizada para criar um novo curso.
     * 
     * @param  listCursosGlobal lista global de curos
     */
@@ -250,7 +250,7 @@ public class Projeto {
     }
         
     /**
-    * . Método utilizado para criar um aluno
+    * Método utilizado para criar um aluno.
     * 
     * @param  listCursosGlobal lista global de curos
     * @param listAlunosGlobal lista global de alunos
@@ -357,7 +357,7 @@ public class Projeto {
     }
     
     /**
-    * . Método utilizado para criar um docentes
+    * Método utilizado para criar um docentes.
     * 
     * @param  listFuncionariosGloba lista global de funcionarios
     */
@@ -403,7 +403,7 @@ public class Projeto {
     }
 
     /**
-    * . Método utilizado para criar um não docente
+    * Método utilizado para criar um não docente.
     * 
     * @param  listFuncionariosGloba lista global de funcionarios
     */
@@ -448,7 +448,7 @@ public class Projeto {
     }
     
     /**
-    * . Método utilizado para adicionar disciplinas a uma curso
+    * Método utilizado para adicionar disciplinas a uma curso.
     * 
     * @param  listFuncionariosGloba lista global de funcionarios
     * @param  listCursosGlobal lista global de cursos
@@ -497,7 +497,7 @@ public class Projeto {
     }
     
     /**
-    * . Método utilizado para adicionar docentes e alunos a uma disciplina 
+    * Método utilizado para adicionar docentes e alunos a uma disciplina .
     * 
     * @param  listFuncionariosGloba lista global de funcionarios
     * @param  listCursosGlobal lista global de cursos
@@ -552,7 +552,7 @@ public class Projeto {
     }
 
     /**
-    * . Método utilizado para listar exames
+    *  Método utilizado para listar exames
     * 
     * @param  listCursosGlobal lista global de cursos
     */
@@ -727,7 +727,7 @@ public class Projeto {
     }
 
     /**
-    * . Método utilizado lsitar exames de um aluno
+    *  Método utilizado lsitar exames de um aluno.
     * 
     * @param  listCursosGlobal lista global de cursos
     * @param  listAlunosGlobal lista global de alunos
@@ -781,7 +781,7 @@ public class Projeto {
     }
     
     /**
-     * recebe um inteiro e certifica-se que é mesmo um inteiro
+     * recebe um inteiro e certifica-se que é mesmo um inteiro.
      * 
      * @return inteiro recebido
      */
@@ -801,7 +801,7 @@ public class Projeto {
     }
     
     /**
-     * recebe um float e certifica-se que é mesmo um float
+     * recebe um float e certifica-se que é mesmo um float.
      * 
      * @return float recebido
      */
@@ -821,7 +821,7 @@ public class Projeto {
     }
     
     /**
-     * recebe uma string
+     * recebe uma string.
      * 
      * @return string recebida
      */
@@ -840,7 +840,7 @@ public class Projeto {
     }
     
     /**
-     * guarda lsitas globais em ficheiros de objeto
+     * guarda lsitas globais em ficheiros de objeto.
      * 
      * @param listCursosGlobal lista global de cursos
      * @param listAlunosGlobal lista global de alunos
@@ -864,7 +864,7 @@ public class Projeto {
     }
     
      /**
-     * lê lsitas globais de ficheiros de objeto
+     * lê lsitas globais de ficheiros de objeto.
      * 
      * @param listCursosGlobal lista global de cursos
      * @param listAlunosGlobal lista global de alunos
