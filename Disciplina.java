@@ -29,6 +29,43 @@ public class Disciplina implements Serializable{
     public String getNome() {
         return nome;
     }
+
+    public int getDocenteResp() {
+        return docenteResp;
+    }
+
+    public ArrayList<Aluno> getListAlunos(ArrayList<Aluno> listAlunosGlobal) {
+        ArrayList<Aluno> listFinalAlunos = new ArrayList<Aluno>();
+        int i, j, sizeFinal, sizeGlobal;
+        float auxFloat;
+        
+        sizeFinal = listAlunos.size();
+        sizeGlobal = listAlunosGlobal.size();
+        
+        for(i=0; i<sizeFinal; i++){
+            auxFloat=listAlunos.get(i);
+            for(j=0; j<sizeGlobal; j++){
+                if(listAlunosGlobal.get(j).getNumeroEst() == auxFloat){
+                    listFinalAlunos.add(listAlunosGlobal.get(j));
+                    break;
+                }
+            }
+        }
+        
+        
+        
+        return listFinalAlunos;
+    }
+
+    public ArrayList<Docente> getListDocentes(ArrayList<Funcionario> listFuncionariosGlobal) {
+        ArrayList<Docente> listFinalDocentes = new ArrayList<Docente>();
+        //inacabado
+        return listFinalDocentes;
+    }
+
+    public ArrayList<Exame> getListExames() {
+        return listExames;
+    }
     
     public void addDocentes(ArrayList<Funcionario> listFuncionariosGlobal){
         int size_global=listFuncionariosGlobal.size();
@@ -229,12 +266,14 @@ public class Disciplina implements Serializable{
         }
     }
 
-    public void addListAlunos(long Aluno) {
-        this.listAlunos.add(Aluno);
+    public void addListAlunos(long aluno) {
+        this.listAlunos.add(aluno);
+        //mudar para receber aluno e ir buscar o long
     }
 
-    public void addListDocentes(int Docente) {
-        this.listDocentes.add(Docente);
+    public void addListDocentes(int docente) {
+        this.listDocentes.add(docente);
+        //mudar para receber docente e ir buscar o int
     }
     
     //*****************************************mudar esta funçao*************************************************
