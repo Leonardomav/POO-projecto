@@ -12,36 +12,36 @@ public class Projeto {
         ArrayList<Funcionario> listFuncionariosGlobal = new ArrayList<Funcionario>();
         ArrayList<Sala> listSalas = new ArrayList<Sala>();
 
-//        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
+        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
         
         //hardcode para testes
         
-        listCursosGlobal.add(new Curso("LEI", "Mestrado", 5));
-        Aluno leo = new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursosGlobal.get(0), "Normal");
-        listAlunosGlobal.add(leo);
-        Aluno tiago = new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursosGlobal.get(0), "Normal");
-        listAlunosGlobal.add(tiago);
-        Aluno artur = new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursosGlobal.get(0), "Normal");
-        listAlunosGlobal.add(artur);
-        Aluno outro = new Aluno("O outro", "Dali",4444444444L, 2012, listCursosGlobal.get(0), "Normal");
-        listAlunosGlobal.add(outro);
-        Docente ernesto = new Docente("Ernesto", "lol", "lol", 1, "lol");
-        listFuncionariosGlobal.add(ernesto);
-        Docente cordeiro = new Docente("Cordeiro", "lol", "lol", 2, "lol");
-        listFuncionariosGlobal.add(cordeiro);
-        Docente vasco = new Docente("Vasco", "lol", "lol", 3, "lol");
-        listFuncionariosGlobal.add(vasco);
-        Docente douradinho = new Docente("Douradinho", "lol", "lol", 4, "lol");
-        listFuncionariosGlobal.add(douradinho);
-        listCursosGlobal.get(0).addListDisciplina(new Disciplina("IPRP", ernesto));
-        listCursosGlobal.get(0).addListDisciplina(new Disciplina("POO", cordeiro));
-        listCursosGlobal.get(0).addListDisciplina(new Disciplina("PPP", vasco));
-        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(leo);
-        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(tiago);
-        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(leo);
-        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(tiago);
-        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(cordeiro);
-        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(ernesto);
+//        listCursosGlobal.add(new Curso("LEI", "Mestrado", 5));
+//        Aluno leo = new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(leo);
+//        Aluno tiago = new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(tiago);
+//        Aluno artur = new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(artur);
+//        Aluno outro = new Aluno("O outro", "Dali",4444444444L, 2012, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(outro);
+//        Docente ernesto = new Docente("Ernesto", "lol", "lol", 1, "lol");
+//        listFuncionariosGlobal.add(ernesto);
+//        Docente cordeiro = new Docente("Cordeiro", "lol", "lol", 2, "lol");
+//        listFuncionariosGlobal.add(cordeiro);
+//        Docente vasco = new Docente("Vasco", "lol", "lol", 3, "lol");
+//        listFuncionariosGlobal.add(vasco);
+//        Docente douradinho = new Docente("Douradinho", "lol", "lol", 4, "lol");
+//        listFuncionariosGlobal.add(douradinho);
+//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("IPRP", ernesto));
+//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("POO", cordeiro));
+//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("PPP", vasco));
+//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(leo);
+//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(tiago);
+//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(leo);
+//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(tiago);
+//        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(cordeiro);
+//        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(ernesto);
         listSalas.add(new Sala("DEI", 1));
         listSalas.add(new Sala("DEI", 2));
         listSalas.add(new Sala("DEI", 3));
@@ -71,13 +71,13 @@ public class Projeto {
                     flag=0;
                     break;
                 case 1: 
-                    criar_exame(listCursosGlobal,listFuncionariosGlobal );
+                    cursoDisp(listCursosGlobal, listSalas,listFuncionariosGlobal, 1);
                     break;
                 case 2: 
-                    //criar_exame();
+                    cursoDisp(listCursosGlobal, listSalas,listFuncionariosGlobal, 2);
                     break;
                 case 3: 
-                    //criar_exame();
+                    cursoDisp(listCursosGlobal, listSalas,listFuncionariosGlobal, 3);
                     break;
                 case 4: 
                     //criar_exame();
@@ -110,13 +110,15 @@ public class Projeto {
         
     }
     
-    private static void criar_exame(ArrayList<Curso> listCursosGlobal, ArrayList<Funcionario> listFuncionariosGlobal){
+    private static void cursoDisp(ArrayList<Curso> listCursosGlobal, ArrayList<Sala> listSalas,ArrayList<Funcionario> listFuncionariosGlobal, int aux){
         ArrayList<Disciplina> listDisp;
         int size_cursos=listCursosGlobal.size();
         int opcao, size_disp;
         
         while(true){
-            System.out.println("Quer adicionar um exame a que curso?: ");
+            if(aux==1) System.out.println("Quer adicionar um exame a que curso?: ");
+            if(aux==2) System.out.println("Quer configurar a sala de um exame de que curso?: ");
+            if(aux==3) System.out.println("Quer convocar vigilantes ou funcionarios para um exame de que curso? ");
             for (int j = 1; j <= size_cursos; j++)
                 System.out.println(j + " - " + listCursosGlobal.get(j-1).getNome());
 
@@ -129,7 +131,7 @@ public class Projeto {
         size_disp=listDisp.size();
                 
         while(true){
-            System.out.println("A que disciplina?");
+            System.out.println("De que disciplina?");
             for (int j = 1; j <= size_disp; j++)
                 System.out.println(j + " - " + listDisp.get(j-1).getNome());
 
@@ -138,9 +140,16 @@ public class Projeto {
             if(opcao>0 && opcao<size_disp+1) break;
             System.out.println("Opção Inválida");
         }
+        if(aux==1) listDisp.get(opcao-1).criaExame();
+        if(aux==2){
+            if(listDisp.get(opcao-1).getListExames().isEmpty()) System.out.println("Não existem exames nesta disciplina!");
+            else listDisp.get(opcao-1).configuraSala(listSalas);
+        }
+        if(aux==3){
+            if(listDisp.get(opcao-1).getListExames().isEmpty()) System.out.println("Não existem exames nesta disciplina!");
+            else listDisp.get(opcao-1).convoca(listFuncionariosGlobal);
+        }
         
-        listDisp.get(opcao-1).criaExame(listFuncionariosGlobal);
-        System.out.println("Exame criado e adicionado.");
     }
     
     private static void criaCurso(ArrayList<Curso> listCursosGlobal){
@@ -526,7 +535,7 @@ public class Projeto {
                 num = Integer.parseInt(aux);
                 return num;
             } catch (NumberFormatException e) {
-                System.out.println("Input inválido. Introduza um inteiro: ");
+                System.out.println("Input inválido. Introduza um inteiro:\n->");
             }
         }
     }

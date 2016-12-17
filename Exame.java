@@ -8,18 +8,18 @@ import java.util.Calendar;
 
 public abstract class Exame implements Serializable{
     private final Calendar dataHora;
-
     private final int duracao; //minutos
     private Sala sala;
-    private ArrayList<Docente> listVigilantes;
+    private final ArrayList<Docente> listVigilantes;
     private ArrayList<NaoDocente> listFuncionarios;
     private ArrayList<Aluno> listAlunos;
     private ArrayList<Float> listNotas;
-    private int tipo;
+    private final int tipo;
 
-    public Exame(Calendar dataHora, int duracao, int tipo) {
+    public Exame(Calendar dataHora, int duracao,ArrayList<Docente> listVigilantes, int tipo) {
         this.dataHora = dataHora;
         this.duracao = duracao;
+        this.listVigilantes = listVigilantes;
         this.tipo = tipo;
     }
     
@@ -63,5 +63,18 @@ public abstract class Exame implements Serializable{
     }
     
     public abstract void inscreveAluno(ArrayList<Aluno> listAlunos);
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
+    public ArrayList<Docente> getListVigilantes() {
+        return listVigilantes;
+    }
+
+    public ArrayList<NaoDocente> getListFuncionarios() {
+        return listFuncionarios;
+    }
+    
     
 }
