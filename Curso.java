@@ -11,17 +11,31 @@ public class Curso implements Serializable{
     private int duracao;
     private ArrayList<Disciplina> listDisciplina = new ArrayList<Disciplina>();
     
+    /**
+     * @param nome nome do curso
+     * @param grau grau do curso
+     * @param duracao duraçao do curso em anos
+     */
     public Curso(String nome, String grau, int duracao) {
         this.nome = nome;
         this.grau = grau;
         this.duracao = duracao;
     }
-
+    
+    /**
+     * 
+     * @return string de um curso
+     */
     @Override
     public String toString() {
         return "Curso{" + "nome=" + nome + ", grau=" + grau + ", duracao=" + duracao + ", listDisciplina=" + listDisciplina + '}';
     }
     
+    /**
+     * Cria uma disciplina e adicioa à lista de disciplinas do curso.
+     * 
+     * @param listFuncionariosGlobal lsita global de funcionarios
+     */
     public void criaDisciplina(ArrayList<Funcionario> listFuncionariosGlobal){
         int size_func = listFuncionariosGlobal.size();
         int size_disp = listDisciplina.size();
@@ -60,18 +74,32 @@ public class Curso implements Serializable{
         System.out.println("Disciplina adicionada.");
     }
 
+    /**
+     * @return nome do curso
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * @return lsita de disciplinas do curso.
+     */
     public ArrayList<Disciplina> getListDisciplina() {
         return listDisciplina;
     }
 
+    /**
+     * adiciona uma disciplina.
+     * 
+     * @param Disciplina disciplina a adicionar
+     */
     public void addListDisciplina(Disciplina Disciplina) {
         this.listDisciplina.add(Disciplina);
     }
-
+    
+    /**
+     * imprime todos os exames de uma curso.
+     */
     void imprimeExamesCurso() {
         int i, size;
         size=listDisciplina.size();

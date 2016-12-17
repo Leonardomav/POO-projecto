@@ -6,7 +6,10 @@ import java.util.Scanner;
 
 public class Projeto {
     
-    public static void main(String[] args) {
+    /**
+    * Função main à qual se faz a primeira chamada.
+    */
+    public static void main() {
         ArrayList<Curso> listCursosGlobal = new ArrayList<Curso>();
         ArrayList<Aluno> listAlunosGlobal = new ArrayList<Aluno>();
         ArrayList<Funcionario> listFuncionariosGlobal = new ArrayList<Funcionario>();
@@ -53,15 +56,19 @@ public class Projeto {
         listSalas.add(new Sala("DEI", 2));
         listSalas.add(new Sala("DEI", 3));
         
-
-//        System.out.println(listCursosGlobal);
-//        System.out.println(listAlunosGlobal);
-//        System.out.println(listFuncionariosGlobal);
         
         menu(listCursosGlobal,listAlunosGlobal,listFuncionariosGlobal, listSalas);
         
     }
-    
+    /**
+    * Método que apresenta o menu e reencaminha para a função pretendida.
+    * para realizar a operação. 
+    * 
+    * @param  listCursosGlobal lista global de curos
+    * @param  listAlunosGlobal lista global de alunos
+    * @param  listFuncionariosGlobal lista global de funcionarios
+    * @param  listSalas lista global de salas
+    */
     private static void menu(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal, ArrayList<Sala> listSalas){
         int opcao, flag=1;
         while(flag==1){
@@ -80,7 +87,6 @@ public class Projeto {
                 case 3:
                 case 5:
                 case 9: 
-                case 11: 
                     cursoDisp(listCursosGlobal, listSalas,listFuncionariosGlobal, opcao);
                     break;
                 case 4: 
@@ -96,9 +102,11 @@ public class Projeto {
                     listarExamesDeAluno(listAlunosGlobal);
                     break;
                 case 10: 
-                    listarExamesDeFuncionario(listFuncionariosGlobal);
+                    //criar_exame();
                     break;
-
+                case 11: 
+                    //criar_exame();
+                    break;
                 default: 
                     System.out.println("Opção inválida");
                     break;
@@ -109,10 +117,17 @@ public class Projeto {
         }
         
     }
-    
+    /**
+    * Método utilizada para escolher um curso e uma disciplina desse curso.
+    * 
+    * @param  listCursosGlobal lista global de curos
+    * @param  listSalas lista global de salas
+    * @param  listFuncionariosGlobal lista global de funcionarios
+    * @param  aux variavel usada para saber qual o metodo da disciplina metodo a usar
+    */
     private static void cursoDisp(ArrayList<Curso> listCursosGlobal, ArrayList<Sala> listSalas,ArrayList<Funcionario> listFuncionariosGlobal, int aux){
         ArrayList<Disciplina> listDisp;
-        int opcao, sizeCursos, sizeDisp;
+        int opcao, sizeCursos, sizeDisp, sizeExame;
         
         sizeCursos=listCursosGlobal.size();
         if(sizeCursos==0){
@@ -136,8 +151,6 @@ public class Projeto {
                 case 9:
                     System.out.println("Quer ver os funcionarios associados a que exame? ");
                     break;
-                case 11:
-                    System.out.println("Quer ver as notas de um exame de que curso");
             }
             for (int j = 1; j <= sizeCursos; j++)
                 System.out.println(j + " - " + listCursosGlobal.get(j-1).getNome());
@@ -192,16 +205,15 @@ public class Projeto {
                 else
                     listDisp.get(opcao-1).imprimeFuncionariosExame();
                 break;
-            case 11:
-                if(listDisp.get(opcao-1).getListExames().isEmpty())
-                    System.out.println("Não existem exames nesta disciplina!");
-                else
-                    listDisp.get(opcao-1).imprimeNotas();
-                break;
         }
         
     }
     
+    /**
+    * Método utilizada para criar um novo curso.
+    * 
+    * @param  listCursosGlobal lista global de curos
+    */
     private static void criaCurso(ArrayList<Curso> listCursosGlobal){
         
         int size;
@@ -242,7 +254,13 @@ public class Projeto {
             System.out.println("Curso Adicionado.");
         }
     }
-    
+        
+    /**
+    * Método utilizado para criar um aluno.
+    * 
+    * @param  listCursosGlobal lista global de curos
+    * @param listAlunosGlobal lista global de alunos
+    */
     private static void criaAluno(ArrayList<Aluno> listAlunosGlobal, ArrayList<Curso> listCursosGlobal){
         int flag, numeroEst, anoMatricula, opcao, num, size_alunos;
         int size_cursos = listCursosGlobal.size();
@@ -343,6 +361,12 @@ public class Projeto {
         }
         
     }
+    
+    /**
+    * Método utilizado para criar um docentes.
+    * 
+    * @param  listFuncionariosGloba lista global de funcionarios
+    */
     private static void criaDocente(ArrayList<Funcionario> listFuncionariosGlobal){
         int aux_int, numero, size, flag;
         String areaInv, email, categoria, nome;
@@ -384,6 +408,11 @@ public class Projeto {
         }
     }
 
+    /**
+    * Método utilizado para criar um não docente.
+    * 
+    * @param  listFuncionariosGloba lista global de funcionarios
+    */
     private static void criaNaoDocente(ArrayList<Funcionario> listFuncionariosGlobal) {
         int aux_int, numero, size, flag;
         String cargo, email, categoria, nome;
@@ -424,6 +453,12 @@ public class Projeto {
         }
     }
     
+    /**
+    * Método utilizado para adicionar disciplinas a uma curso.
+    * 
+    * @param  listFuncionariosGloba lista global de funcionarios
+    * @param  listCursosGlobal lista global de cursos
+    */
     private static void addDisciplinas(ArrayList<Curso> listCursosGlobal,ArrayList<Funcionario> listFuncionariosGlobal){
         int opcao, flag;
         int size_cursos=listCursosGlobal.size();
@@ -467,6 +502,12 @@ public class Projeto {
         }while(flag==0);
     }
     
+    /**
+    * Método utilizado para adicionar docentes e alunos a uma disciplina .
+    * 
+    * @param  listFuncionariosGloba lista global de funcionarios
+    * @param  listCursosGlobal lista global de cursos
+    */
     private static void addtoDisp(ArrayList<Curso> listCursosGlobal, ArrayList<Funcionario> listFuncionariosGlobal, ArrayList<Aluno> listAlunosGlobal){
         int flag, size_cursos, size_disp,opcao;
         ArrayList<Disciplina> listDisp;
@@ -516,6 +557,11 @@ public class Projeto {
         }while(flag==0);
     }
 
+    /**
+    *  Método utilizado para listar exames
+    * 
+    * @param  listCursosGlobal lista global de cursos
+    */
     private static void listarExames(ArrayList<Curso> listCursosGlobal) {
         int i, size;
         size = listCursosGlobal.size();
@@ -525,6 +571,11 @@ public class Projeto {
         }
     }
 
+    /**
+    * . Método utilizado para listar alunos de um exame
+    * 
+    * @param  listCursosGlobal lista global de cursos
+    */
     private static void listarAlunosDeExame(ArrayList<Curso> listCursosGlobal) {
         int i, opcao, sizeCursos, sizeDisp, sizeExames, sizeAlunos, sizeNotas;
         ArrayList<Disciplina> listDisp;
@@ -607,6 +658,12 @@ public class Projeto {
         }
     }
 
+    /**
+    * . Método utilizado inscrever alunos em exame
+    * 
+    * @param  listCursosGlobal lista global de cursos
+    * @param  listAlunosGlobal lista global de alunos
+    */
     private static void inscreverAlunoExame(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal) {
         int i, opcao, sizeCursos, sizeDisp, sizeExames;
         ArrayList<Disciplina> listDisp;
@@ -675,6 +732,12 @@ public class Projeto {
         auxAluno.addListInscricoes(auxExame);
     }
 
+    /**
+    *  Método utilizado lsitar exames de um aluno.
+    * 
+    * @param  listCursosGlobal lista global de cursos
+    * @param  listAlunosGlobal lista global de alunos
+    */
     private static void listarExamesDeAluno(ArrayList<Aluno> listAlunosGlobal) {
         int i, opcao, sizeAlunos, sizeExames;
         Aluno auxAluno;
@@ -722,38 +785,12 @@ public class Projeto {
         }
 
     }
-
-    private static void listarExamesDeFuncionario(ArrayList<Funcionario> listFuncionariosGlobal) {
-        int i, opcao, sizeFuncionarios;
-        Funcionario auxFunc;
-        ArrayList<Exame> listExam;
-        ArrayList<Aluno> listAlunExame;
-        Exame auxExame;
-
-        sizeFuncionarios=listFuncionariosGlobal.size();
-        if(sizeFuncionarios==0){
-            System.out.println("Não existem funcionarios.");
-            return;
-        }    
-        System.out.println("Escolha o funcionario: ");
-
-        for(i=0; i<sizeFuncionarios; i++){
-            auxFunc = listFuncionariosGlobal.get(i);
-            System.out.println("Funcionario " + (i+1) + ": " + auxFunc);
-
-        }
-        System.out.print("-> ");
-        while(true){
-            opcao=retornaInteiro();
-            if(opcao>0 && opcao<=sizeFuncionarios) break;
-            System.out.println("Opção inválida");
-        }
-        
-        System.out.println("Lista de exames: ");
-        auxFunc=listFuncionariosGlobal.get(opcao-1);
-        System.out.println(listExam=auxFunc.getVigilancias());   
-    }
     
+    /**
+     * recebe um inteiro e certifica-se que é mesmo um inteiro.
+     * 
+     * @return inteiro recebido
+     */
     public static int retornaInteiro(){
         Scanner sc = new Scanner(System.in);
         String aux;
@@ -769,6 +806,11 @@ public class Projeto {
         }
     }
     
+    /**
+     * recebe um float e certifica-se que é mesmo um float.
+     * 
+     * @return float recebido
+     */
     public static float retornaFloat(){
         Scanner sc = new Scanner(System.in);
         String aux;
@@ -784,18 +826,36 @@ public class Projeto {
         }
     }
     
+    /**
+     * recebe uma string.
+     * 
+     * @return string recebida
+     */
     public static String retornaString(){
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
     
+    /**
+     * espera receber um enter
+     */
     private static void esperaEnter(){
         Scanner sc = new Scanner(System.in);
         sc.nextLine();
         return;
     }
     
+
+    /**
+     * guarda lsitas globais em ficheiros de objeto.
+     * 
+     * @param listCursosGlobal lista global de cursos
+     * @param listAlunosGlobal lista global de alunos
+     * @param listFuncionariosGlobal lista global de funcionarios
+     * @param listSalas lista global de salas
+     */
     private static void guardarEmFicheiro(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal, ArrayList<Sala> listSalas){
+
         FicheiroDeObjectos fo = new FicheiroDeObjectos();
         FicheiroDeTexto ft = new FicheiroDeTexto();
         Sala auxSala;
@@ -831,6 +891,15 @@ public class Projeto {
         
     }
     
+
+     /**
+     * lê lsitas globais de ficheiros de objeto.
+     * 
+     * @param listCursosGlobal lista global de cursos
+     * @param listAlunosGlobal lista global de alunos
+     * @param listFuncionariosGlobal lista global de funcionarios
+     * @param listSalas lista global de salas
+     */
     private static void carregarDeFicheiro(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal, ArrayList<Sala> listSalas) {
         FicheiroDeObjectos fo = new FicheiroDeObjectos();
         FicheiroDeTexto ft = new FicheiroDeTexto();

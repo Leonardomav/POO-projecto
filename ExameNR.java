@@ -11,6 +11,13 @@ public class ExameNR extends Exame implements Serializable{
         super(dataHora, duracao, listVigilantes, tipo); //tipo=0 Normal, Tipo=1 Recurso
     }
 
+    /**
+     * Inscreve alunos neste exame.
+     * 
+     * @param listAlunos lista de alunos global
+     * @param auxDisciplina disciplina do exame
+     * @return 
+     */
     @Override
     public Aluno inscreveAluno(ArrayList<Aluno> listAlunos, Disciplina auxDisciplina) {
         int i, opcao, index, sizeAlunos;

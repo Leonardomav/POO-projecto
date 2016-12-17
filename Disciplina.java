@@ -15,18 +15,26 @@ public class Disciplina implements Serializable{
     private ArrayList<Aluno> listAlunos = new ArrayList<Aluno>();
     private ArrayList<Docente> listDocentes = new ArrayList<Docente>();
     private ArrayList<Exame> listExames = new ArrayList<Exame>();
-
+    
+    /**
+     * 
+     * @param nome nome da disciplina
+     * @param docenteResp docente responsavel
+     */
     public Disciplina(String nome, Docente docenteResp) {
        this.nome=nome;
        this.docenteResp=docenteResp;
     }
-
+    /**
+     * 
+     * @return string da disciplina
+     */
     @Override
     public String toString() {
         //return "Disciplina{" + "nome=" + nome + ", docenteResp=" + docenteResp + ", listAlunos=" + listAlunos + ", listDocentes=" + listDocentes + ", listExames=" + listExames + '}';
         return "Disciplina{" + "nome=" + nome + ", docenteResp=" + docenteResp + '}';
     }
-
+   
     public String getNome() {
         return nome;
     }
@@ -47,6 +55,11 @@ public class Disciplina implements Serializable{
         return listExames;
     }
     
+    /**
+     * Adicina um Docente à lista de docentes da disciplina.
+     * 
+     * @param listFuncionariosGlobal lista global de funcionarios
+     */
     public void addDocentes(ArrayList<Funcionario> listFuncionariosGlobal){
         int sizeGlobal=listFuncionariosGlobal.size();
         int index, flag=1, opcao, i;
@@ -101,6 +114,11 @@ public class Disciplina implements Serializable{
         }
     }
     
+    /**
+     * Adiciona um aluno a lista de alunos inscritos.
+     * 
+     * @param listAlunosGlobal lista global de alunos
+     */
     public void addAlunos(ArrayList<Aluno> listAlunosGlobal){
         int i, size_global=listAlunosGlobal.size();
         int index, flag=1, opcao;
@@ -150,6 +168,9 @@ public class Disciplina implements Serializable{
         }
     }
     
+    /**
+     * Cria um exame para esta disciplina
+     */
     public void criaExame(){
         int ano, mes, dia, hora, min, flag, duracao, opcao=0, auxDur, aux, index, quit, first=0;
         ArrayList<Exame> exameAux;
@@ -296,6 +317,11 @@ public class Disciplina implements Serializable{
         else System.out.println("Impossível criar um exame!");
     }
     
+    /**
+     * Modifica ou adiciona sala ao um exame desta disciplina.
+     * 
+     * @param listSalas lista global de salas
+     */
     public void configuraSala(ArrayList<Sala> listSalas){
         int size_salas = listSalas.size();
         int aux, free, auxDur, opcao, duracao, flag, quit=0;
@@ -377,6 +403,11 @@ public class Disciplina implements Serializable{
 
     }
     
+    /**
+     * Convoca funcionario docentes ou nao docentes para vigiar um exame desta disciplnia.
+     * 
+     * @param listFuncionariosGlobal lista global de funcionarios
+     */
     public void convoca(ArrayList<Funcionario> listFuncionariosGlobal){
         int opcao, aux, duracao, auxDur, index, quit=0, flag=0;
         Exame exame;
@@ -489,6 +520,16 @@ public class Disciplina implements Serializable{
         this.listDocentes.add(docente);
     }
     
+    /**
+     * vericia ligitimidade da data.
+     * 
+     * @param dia
+     * @param mes
+     * @param ano
+     * @param hora
+     * @param min
+     * @return 
+     */
     private static int verifica_data(int dia, int mes, int ano, int hora, int  min){
         if (((hora<0)||(hora>23))||((min<0)||(min>59))) return 0;
    	if ((dia >= 1) && (mes >= 1 && mes <= 12) && ano>=0){
@@ -505,7 +546,15 @@ public class Disciplina implements Serializable{
         }
         return 0;
 }
-    
+    /**
+     * Verifica se nao ha sobreposiçoes de horarios.
+     * 
+     * @param data 1º data inicial 
+     * @param dataplus 1º data final
+     * @param dataAux 2º data inicial
+     * @param dataplusAux   2º data final
+     * @return 
+     */
     private static int checkHora(Calendar data, Calendar dataplus, Calendar dataAux, Calendar dataplusAux){
         int compare;
         compare = data.compareTo(dataAux);
@@ -531,7 +580,9 @@ public class Disciplina implements Serializable{
             System.out.println("\t\t" + i+1 + " - " + listExames.get(i).toString());
         }
     }
-
+    /**
+     * Lança notas para um exame desta disciplina.
+     */
     void lancaNotas() {
         int opcao;
         
@@ -547,7 +598,10 @@ public class Disciplina implements Serializable{
         }
         listExames.get(opcao-1).defineNotas();
     }
-
+    
+    /**
+     * Imprime funcionario de uma exame desta disciplina.
+     */
     void imprimeFuncionariosExame() {
         int opcao;
         
@@ -562,22 +616,6 @@ public class Disciplina implements Serializable{
             System.out.println("Opção Inválida");
         }
         listExames.get(opcao-1).imprimeFuncionarios();
-    }
-
-    void imprimeNotas() {
-        int opcao;
-        
-        while(true){
-            System.out.println("Qual exame?");
-            for (int i = 0; i < listExames.size(); i++)
-                System.out.println(i+1 + " - " + listExames.get(i).toString());
-
-            System.out.print("-> ");
-            opcao=retornaInteiro();
-            if(opcao>0 && opcao<=listExames.size()) break;
-            System.out.println("Opção Inválida");
-        }
-        listExames.get(opcao-1).imprimeNotas();
     }
     
     
