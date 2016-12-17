@@ -12,9 +12,7 @@ public class Projeto {
         ArrayList<Funcionario> listFuncionariosGlobal = new ArrayList<Funcionario>();
         ArrayList<Sala> listSalas = new ArrayList<Sala>();
 
-
 //        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
-
         
         //hardcode para testes
         
@@ -726,7 +724,7 @@ public class Projeto {
                 num = Integer.parseInt(aux);
                 return num;
             } catch (NumberFormatException e) {
-                System.out.println("Input inválido. Introduza um inteiro:\n->");
+                System.out.print("Input inválido. Introduza um inteiro:\n->");
             }
         }
     }
