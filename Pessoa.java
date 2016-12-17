@@ -11,14 +11,6 @@ public abstract class Pessoa implements Serializable{
         this.email = email;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getNome() {
         return nome;
     }

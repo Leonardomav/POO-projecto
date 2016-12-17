@@ -23,7 +23,8 @@ public class Disciplina implements Serializable{
 
     @Override
     public String toString() {
-        return "Disciplina{" + "nome=" + nome + ", docenteResp=" + docenteResp + ", listAlunos=" + listAlunos + ", listDocentes=" + listDocentes + ", listExames=" + listExames + '}';
+        //return "Disciplina{" + "nome=" + nome + ", docenteResp=" + docenteResp + ", listAlunos=" + listAlunos + ", listDocentes=" + listDocentes + ", listExames=" + listExames + '}';
+        return "Disciplina{" + "nome=" + nome + ", docenteResp=" + docenteResp + '}';
     }
 
     public String getNome() {
@@ -47,7 +48,7 @@ public class Disciplina implements Serializable{
     }
     
     public void addDocentes(ArrayList<Funcionario> listFuncionariosGlobal){
-        int size_global=listFuncionariosGlobal.size();
+        int sizeGlobal=listFuncionariosGlobal.size();
         int index, flag=1, opcao, i;
         Docente auxDocente;
         
@@ -55,8 +56,7 @@ public class Disciplina implements Serializable{
         System.out.println("Qual docente quer adicionar?");
         while(flag==1){
             index=0;
-
-            for (i=0; i<size_global; i++){
+            for (i=0; i<sizeGlobal; i++){
                 if(listFuncionariosGlobal.get(i).getTipo()){
                     auxDocente=(Docente) listFuncionariosGlobal.get(i);
                     if((!(listDocentes.contains(auxDocente))) && (auxDocente!=docenteResp)){
@@ -74,7 +74,7 @@ public class Disciplina implements Serializable{
                 }
                 index=0;
 
-                for (i=0; i < size_global; i++){
+                for (i=0; i < sizeGlobal; i++){
                     if(listFuncionariosGlobal.get(i).getTipo()){
                         auxDocente=(Docente) listFuncionariosGlobal.get(i);
                         if((!(listDocentes.contains(auxDocente))) && (auxDocente!=docenteResp)){
@@ -449,7 +449,7 @@ public class Disciplina implements Serializable{
         }
     }
 
-    void imprimeExamesDisciplina() {
+    public void imprimeExamesDisciplina() {
         int i, size;
         size = listExames.size();
         for(i=0; i<size; i++){
