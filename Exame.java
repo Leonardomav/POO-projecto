@@ -44,6 +44,10 @@ public abstract class Exame implements Serializable{
         listNaoDocente.add(novoNaoDocente);
     }
     
+     public void addListDocente(Docente novoDocente){
+        listVigilantes.add(novoDocente);
+    }
+    
     public Calendar getDataHora() {
         return dataHora;
     }
@@ -105,13 +109,5 @@ public abstract class Exame implements Serializable{
 
     public void setSala(Sala sala) {
         this.sala = sala;
-    }
-
-    public ArrayList<Docente> getListVigilantes() {
-        return listVigilantes;
-    }
-
-    public ArrayList<NaoDocente> getListFuncionarios() {
-        return listFuncionarios;
     }
 }

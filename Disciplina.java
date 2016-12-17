@@ -159,6 +159,7 @@ public class Disciplina implements Serializable{
 
         
         do{
+            System.out.println("------------");
             System.out.print("Ano: ");
             ano=retornaInteiro();
             System.out.print("Mes: ");
@@ -187,10 +188,15 @@ public class Disciplina implements Serializable{
         do{
             quit=0;
             do{
+                flag=0;
                 index = 0;
                 System.out.println("Que docente quer adicionar à vigilancia do exame: ");
                 for(int i =0; i<listDocentes.size(); i++){
-                    if((listDocentes.get(i).getTipo()==true) &&!(docentesVigilantes.contains(listDocentes.get(i)))){
+                    if(!(docentesVigilantes.contains(docenteResp))){
+                        index++;
+                        System.out.println(index + " - " + docenteResp.getNome());
+                    }
+                    if((listDocentes.get(i).getTipo()==true) && !(docentesVigilantes.contains(listDocentes.get(i)))){
                         exameAux=listDocentes.get(i).getVigilancias();
                         aux=0;
                         for(int j=0; j<exameAux.size(); j++){
@@ -221,7 +227,16 @@ public class Disciplina implements Serializable{
             if(quit==0){
                 index=0;
                 for(int i =0; i<listDocentes.size(); i++){
-                    if(listDocentes.get(i).getTipo()==true){
+                    if(!(docentesVigilantes.contains(docenteResp))){
+                        index++;
+                        if(index==opcao){
+                            docentesVigilantes.add(docenteResp);
+                            first=1;
+                            System.out.println("Docente Adicionado!");
+                            break;
+                        }
+                    }  
+                    if((listDocentes.get(i).getTipo()==true)&&!(docentesVigilantes.contains(listDocentes.get(i)))){
                         exameAux=listDocentes.get(i).getVigilancias();
                         aux=0;
                         for(int j=0; j<exameAux.size(); j++){
@@ -235,7 +250,7 @@ public class Disciplina implements Serializable{
                             index++;
                         }
                         if(index==opcao){
-                            docentesVigilantes.add((Docente)listDocentes.get(i));
+                            docentesVigilantes.add(listDocentes.get(i));
                             first=1;
                             System.out.println("Docente Adicionado!");
                         }
@@ -266,7 +281,7 @@ public class Disciplina implements Serializable{
                     listExames.add(new ExameNR(data, duracao, docentesVigilantes,0));
                     break;
                 case 2:   
-                    listExames.add(new ExameNR(data, duracao,docentesVigilantes,1));
+                    listExames.add(new ExameNR(data, duracao, docentesVigilantes,1));
                     break;
                 case 3:
                     listExames.add(new ExameE(data, duracao, docentesVigilantes));
@@ -350,17 +365,20 @@ public class Disciplina implements Serializable{
                 }
                 if(free==listSalas.get(i).getExames().size())
                     aux++;   
-                if(aux==opcao)
+                if(aux==opcao){
                     listSalas.get(i);
+                    break;
+                }  
             }
             exame.setSala(listSalas.get(i-1));
             listSalas.get(i-1).getExames().add(exame);
+            System.out.println("Sala definida!");
         }
 
     }
     
     public void convoca(ArrayList<Funcionario> listFuncionariosGlobal){
-        int opcao, aux, duracao, auxDur, index;
+        int opcao, aux, duracao, auxDur, index, quit=0, flag=0;
         Exame exame;
         ArrayList<Exame> exameAux;
         Calendar data, dataAux, dataplus, dataplusAux;
@@ -382,28 +400,85 @@ public class Disciplina implements Serializable{
         dataplus=(Calendar)data.clone();
         dataplus.add(Calendar.MINUTE, duracao);
         
-        index=0;
-        for(int i =0; i<listFuncionariosGlobal.size(); i++){
-            if((listFuncionariosGlobal.get(i).getTipo()==true) &&!(exame.getListVigilantes().contains((Docente)listFuncionariosGlobal.get(i)))){
-                exameAux=listFuncionariosGlobal.get(i).getVigilancias();
-                aux=0;
-                for(int j=0; j<exameAux.size(); j++){
-                    dataAux=exameAux.get(i).getDataHora();
-                    auxDur=exameAux.get(i).getDuracao();
-                    dataplusAux=(Calendar) dataAux.clone();
-                    dataplusAux.add(Calendar.MINUTE, auxDur);
-                    aux+=checkHora(data, dataplus, dataAux, dataplusAux);
+        do{
+            do{
+                index=0;
+                for(int i =0; i<listFuncionariosGlobal.size(); i++){
+                    if((listFuncionariosGlobal.get(i).getTipo()==true) &&!(exame.getListVigilantes().contains((Docente)listFuncionariosGlobal.get(i)))){
+                        exameAux=listFuncionariosGlobal.get(i).getVigilancias();
+                        aux=0;
+                        for(int j=0; j<exameAux.size(); j++){
+                            dataAux=exameAux.get(j).getDataHora();
+                            auxDur=exameAux.get(j).getDuracao();
+                            dataplusAux=(Calendar) dataAux.clone();
+                            dataplusAux.add(Calendar.MINUTE, auxDur);
+                            aux+=checkHora(data, dataplus, dataAux, dataplusAux);
+                        }
+                        if(aux==exameAux.size()){
+                            index++;
+                            System.out.println(index + " - DOCENTE - " + listFuncionariosGlobal.get(i).getNome());
+                        }
+                    }
+                    else if((listFuncionariosGlobal.get(i).getTipo()==false) && !(exame.getListFuncionarios().contains((NaoDocente)listFuncionariosGlobal.get(i)))){
+                        index++;
+                        System.out.println(index + " - NÃO DOCENTE - " + listFuncionariosGlobal.get(i).getNome());
+                    }   
                 }
-                if(aux==exameAux.size()){
-                    index++;
-                    System.out.println(index + "- DOCENTE - " + listDocentes.get(i).getNome());
+                if(index==0){
+                        System.out.println("Não existem salas diponiveis. Impossivel realizar operação!");
+                        quit=1;
+                        break;
                 }
-            }
-            else if(!(exame.getListFuncionarios().contains((NaoDocente)listFuncionariosGlobal.get(i)))){
-                index++;
-                System.out.println(index + "- NÃO DOCENTE - " + listDocentes.get(i).getNome());
-            }//ainda nao acabado    
-        }
+                else{
+                    System.out.print("-> ");
+                    opcao=retornaInteiro();
+                    if(opcao>0 && opcao<index+1) flag=1;
+                    else System.out.println("Opção Inválida");
+                }
+            }while(flag==0);
+
+            if(quit==0){
+                index=0;
+                for(int i =0; i<listFuncionariosGlobal.size(); i++){
+                    if((listFuncionariosGlobal.get(i).getTipo()==true) &&!(exame.getListVigilantes().contains((Docente)listFuncionariosGlobal.get(i)))){
+                        exameAux=listFuncionariosGlobal.get(i).getVigilancias();
+                        aux=0;
+                        for(int j=0; j<exameAux.size(); j++){
+                            dataAux=exameAux.get(j).getDataHora();
+                            auxDur=exameAux.get(j).getDuracao();
+                            dataplusAux=(Calendar) dataAux.clone();
+                            dataplusAux.add(Calendar.MINUTE, auxDur);
+                            aux+=checkHora(data, dataplus, dataAux, dataplusAux);
+                        }
+                        if(aux==exameAux.size()){
+                            index++;
+                        }
+                    }
+                    else if((listFuncionariosGlobal.get(i).getTipo()==false) && !(exame.getListFuncionarios().contains((NaoDocente)listFuncionariosGlobal.get(i)))){
+                        index++;
+                    }
+                    if(index==opcao){
+                        if(listFuncionariosGlobal.get(i).getTipo()==true){
+                            exame.addListDocente((Docente)listFuncionariosGlobal.get(i));
+                            listFuncionariosGlobal.get(i).addVigilancias(exame);
+                            System.out.println("Docente adicionado com sucesso!");
+                        }
+                        else{
+                            exame.addListNaoDocente((NaoDocente)listFuncionariosGlobal.get(i));
+                            listFuncionariosGlobal.get(i).addVigilancias(exame);
+                            System.out.println("Não Docente adicionado com sucesso!");
+                        }
+                    }
+                }
+                while(true){
+                    System.out.print("Quer adicionar mais docentes ou não docente à vigilancia?\n1 - Sim\n2 - Não\n-> ");
+                    opcao=retornaInteiro();
+                    if(opcao==1 || opcao==2) break;
+                    System.out.println("Opção Inválida");
+                }
+                if(opcao==2) quit=1;
+            } 
+        }while(quit==0);
     }
 
     public void addListAlunos(Aluno aluno) {
