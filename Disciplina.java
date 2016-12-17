@@ -30,8 +30,8 @@ public class Disciplina implements Serializable{
         return nome;
     }
     
-    public void addDocentes(ArrayList<Docente> listDocentesGlobal){
-        int size_global=listDocentesGlobal.size();
+    public void addDocentes(ArrayList<Funcionario> listFuncionariosGlobal){
+        int size_global=listFuncionariosGlobal.size();
         int index, flag=1, opcao;
         
         

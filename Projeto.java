@@ -9,10 +9,10 @@ public class Projeto {
     public static void main(String[] args) {
         ArrayList<Curso> listCursosGlobal = new ArrayList<Curso>();
         ArrayList<Aluno> listAlunosGlobal = new ArrayList<Aluno>();
-        ArrayList<Docente> listDocentesGlobal = new ArrayList<Docente>();
+        ArrayList<Funcionario> listFuncionariosGlobal = new ArrayList<Funcionario>();
         ArrayList<Sala> listSalas = new ArrayList<Sala>();
 
-        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listDocentesGlobal);
+        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
         
         //hardcode para testes
         
@@ -43,9 +43,9 @@ public class Projeto {
 //        System.out.println(listAlunosGlobal);
 //        System.out.println(listFuncionariosGlobal);
         
-        menu(listCursosGlobal,listAlunosGlobal,listDocentesGlobal, listSalas);
+        menu(listCursosGlobal,listAlunosGlobal,listFuncionariosGlobal, listSalas);
         
-        guardarEmFicheiro(listCursosGlobal, listAlunosGlobal, listDocentesGlobal);
+        guardarEmFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
         
     }
     
@@ -384,7 +384,7 @@ public class Projeto {
             }
             
             for(int j=0; j<opcao; j++){
-                aux_curso.criaDisciplina(listDocentesGlobal);
+                aux_curso.criaDisciplina(listFuncionariosGlobal);
             }
             
             while(true){
@@ -432,7 +432,7 @@ public class Projeto {
                 System.out.println("Opção Inválida");
             }
             
-            listDisp.get(opcao-1).addDocentes(listDocentesGlobal);
+            listDisp.get(opcao-1).addDocentes(listFuncionariosGlobal);
             listDisp.get(opcao-1).addAlunos(listAlunosGlobal);
             
             
@@ -486,8 +486,8 @@ public class Projeto {
         fo.escreveObjecto(listAlunosGlobal);
         fo.fechaEscrita();
         
-        fo.abreEscrita("docentes.dat");
-        fo.escreveObjecto(listDocentesGlobal);
+        fo.abreEscrita("funcionarios.dat");
+        fo.escreveObjecto(listFuncionariosGlobal);
         fo.fechaEscrita();
         
     }
@@ -503,8 +503,8 @@ public class Projeto {
         listAlunosGlobal.addAll((ArrayList<Aluno>) fo.leObjecto());
         fo.fechaLeitura();
         
-        fo.abreLeitura("docentes.dat");
-        listDocentesGlobal.addAll((ArrayList<Docente>) fo.leObjecto());
+        fo.abreLeitura("funcionarios.dat");
+        listFuncionariosGlobal.addAll((ArrayList<Funcionario>) fo.leObjecto());
         fo.fechaLeitura();
         
     }
