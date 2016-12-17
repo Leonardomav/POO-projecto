@@ -96,6 +96,11 @@ public abstract class Exame implements Serializable{
             listNotas.add(retornaFloat());
         }
     }
+    
+    void imprimeNotas() {
+        System.out.println("TESTE");
+        System.out.println(listNotas);
+    }
   
     public abstract Aluno inscreveAluno(ArrayList<Aluno> listAlunos, Disciplina auxDisciplina);
 

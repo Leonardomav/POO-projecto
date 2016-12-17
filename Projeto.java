@@ -75,6 +75,7 @@ public class Projeto {
                 case 3:
                 case 5:
                 case 9: 
+                case 11: 
                     cursoDisp(listCursosGlobal, listSalas,listFuncionariosGlobal, opcao);
                     break;
                 case 4: 
@@ -90,11 +91,9 @@ public class Projeto {
                     listarExamesDeAluno(listAlunosGlobal);
                     break;
                 case 10: 
-                    //criar_exame();
+                    listarExamesDeFuncionario(listFuncionariosGlobal);
                     break;
-                case 11: 
-                    //criar_exame();
-                    break;
+
                 default: 
                     System.out.println("Opção inválida");
                     break;
@@ -107,7 +106,7 @@ public class Projeto {
     
     private static void cursoDisp(ArrayList<Curso> listCursosGlobal, ArrayList<Sala> listSalas,ArrayList<Funcionario> listFuncionariosGlobal, int aux){
         ArrayList<Disciplina> listDisp;
-        int opcao, sizeCursos, sizeDisp, sizeExame;
+        int opcao, sizeCursos, sizeDisp;
         
         sizeCursos=listCursosGlobal.size();
         if(sizeCursos==0){
@@ -131,6 +130,8 @@ public class Projeto {
                 case 9:
                     System.out.println("Quer ver os funcionarios associados a que exame? ");
                     break;
+                case 11:
+                    System.out.println("Quer ver as notas de um exame de que curso");
             }
             for (int j = 1; j <= sizeCursos; j++)
                 System.out.println(j + " - " + listCursosGlobal.get(j-1).getNome());
@@ -184,6 +185,12 @@ public class Projeto {
                     System.out.println("Não existem exames nesta disciplina!");
                 else
                     listDisp.get(opcao-1).imprimeFuncionariosExame();
+                break;
+            case 11:
+                if(listDisp.get(opcao-1).getListExames().isEmpty())
+                    System.out.println("Não existem exames nesta disciplina!");
+                else
+                    listDisp.get(opcao-1).imprimeNotas();
                 break;
         }
         
@@ -709,9 +716,36 @@ public class Projeto {
         }
 
     }
-    
-    private void criaSala(){
+
+    private static void listarExamesDeFuncionario(ArrayList<Funcionario> listFuncionariosGlobal) {
+        int i, opcao, sizeFuncionarios;
+        Funcionario auxFunc;
+        ArrayList<Exame> listExam;
+        ArrayList<Aluno> listAlunExame;
+        Exame auxExame;
+
+        sizeFuncionarios=listFuncionariosGlobal.size();
+        if(sizeFuncionarios==0){
+            System.out.println("Não existem funcionarios.");
+            return;
+        }    
+        System.out.println("Escolha o funcionario: ");
+
+        for(i=0; i<sizeFuncionarios; i++){
+            auxFunc = listFuncionariosGlobal.get(i);
+            System.out.println("Funcionario " + (i+1) + ": " + auxFunc);
+
+        }
+        System.out.print("-> ");
+        while(true){
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<=sizeFuncionarios) break;
+            System.out.println("Opção inválida");
+        }
         
+        System.out.println("Lista de exames: ");
+        auxFunc=listFuncionariosGlobal.get(opcao-1);
+        System.out.println(listExam=auxFunc.getVigilancias());   
     }
     
     public static int retornaInteiro(){
