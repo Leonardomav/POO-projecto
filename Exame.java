@@ -10,17 +10,16 @@ public abstract class Exame implements Serializable{
     private final Calendar dataHora;
 
     private final int duracao; //minutos
-    private final Sala sala;
+    private Sala sala;
     private ArrayList<Docente> listVigilantes;
     private ArrayList<NaoDocente> listFuncionarios;
     private ArrayList<Long> listAlunos;
     private ArrayList<Float> listNotas;
     private int tipo;
 
-    public Exame(Calendar dataHora, int duracao, Sala sala, int tipo) {
+    public Exame(Calendar dataHora, int duracao, int tipo) {
         this.dataHora = dataHora;
         this.duracao = duracao;
-        this.sala = sala;
         this.tipo = tipo;
     }
     

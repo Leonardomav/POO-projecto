@@ -63,7 +63,7 @@ public class Projeto {
                     flag=0;
                     break;
                 case 1: 
-                    criar_exame(listCursosGlobal, listSalas);
+                    criar_exame(listCursosGlobal,listFuncionariosGlobal );
                     break;
                 case 2: 
                     //criar_exame();
@@ -102,7 +102,7 @@ public class Projeto {
         
     }
     
-    private static void criar_exame(ArrayList<Curso> listCursosGlobal, ArrayList<Sala> listSalas){
+    private static void criar_exame(ArrayList<Curso> listCursosGlobal, ArrayList<Funcionario> listFuncionariosGlobal){
         ArrayList<Disciplina> listDisp;
         int size_cursos=listCursosGlobal.size();
         int opcao, size_disp;
@@ -131,7 +131,7 @@ public class Projeto {
             System.out.println("Opção Inválida");
         }
         
-        listDisp.get(opcao-1).criaExame(listSalas);
+        listDisp.get(opcao-1).criaExame(listFuncionariosGlobal);
         System.out.println("Exame criado e adicionado.");
     }
     

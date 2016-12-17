@@ -128,14 +128,12 @@ public class Disciplina implements Serializable{
         }
     }
     
-    public void criaExame( ArrayList<Sala> listSalas){
-        int ano, mes, dia, hora, min, flag, duracao, size_salas, opcao=0, aux_dur, free, aux;
-        Sala sala_aux = null;
-        Exame exames_aux;
-        Calendar data_aux, dataplus, dataplus_aux;
+    public void criaExame( ArrayList<Funcionario> listFuncionariosGlobal){
+        int ano, mes, dia, hora, min, flag, duracao, opcao=0, auxDur, aux, index;
+        ArrayList<Exame> exameAux;
+        Calendar dataAux, dataplus, dataplusAux;
         Calendar data = new GregorianCalendar();
 
-        size_salas = listSalas.size();
         
         do{
             System.out.print("Ano: ");
@@ -162,7 +160,55 @@ public class Disciplina implements Serializable{
         
         dataplus=data;
         dataplus.add(Calendar.MINUTE, duracao);
-    
+        
+        do{
+            index = 0;
+            System.out.println("Que docente quer adicionar à vigilancia do exame: ");
+            for(int i =0; i<listFuncionariosGlobal.size(); i++){
+                if(listFuncionariosGlobal.get(i).getTipo()==true){
+                    exameAux=listFuncionariosGlobal.get(i).getVigilancias();
+                    aux=0;
+                    for(int j=0; j<exameAux.size(); j++){
+                        dataAux=exameAux.get(i).getDataHora();
+                        auxDur=exameAux.get(i).getDuracao();
+                        dataplusAux=dataAux;
+                        dataplusAux.add(Calendar.MINUTE, auxDur);
+                        aux+=checkHora(data, dataplus, dataAux, dataplusAux);
+                    }
+                    if(aux==exameAux.size()){
+                        index++;
+                        System.out.println(index + " - " + listFuncionariosGlobal.get(i).getNome());
+                    }
+                }
+            }
+            if(index==0){
+                System.out.println("Não existem docentes disponiveis");
+            }
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<=index) flag=1;
+            else System.out.println("Opção Inválida");
+        }while(flag==0);
+        
+         for(int i =0; i<listFuncionariosGlobal.size(); i++){
+                if(listFuncionariosGlobal.get(i).getTipo()==true){
+                    exameAux=listFuncionariosGlobal.get(i).getVigilancias();
+                    aux=0;
+                    for(int j=0; j<exameAux.size(); j++){
+                        dataAux=exameAux.get(i).getDataHora();
+                        auxDur=exameAux.get(i).getDuracao();
+                        dataplusAux=dataAux;
+                        dataplusAux.add(Calendar.MINUTE, auxDur);
+                        aux+=checkHora(data, dataplus, dataAux, dataplusAux);
+                    }
+                    if(aux==exameAux.size()){
+                        index++;
+                        System.out.println(index + " - " + listFuncionariosGlobal.get(i).getNome());
+                    }
+                }
+            }
+        
+        /*
         do{
             aux=0;
             System.out.println("Exame em que sala: ");
@@ -174,9 +220,9 @@ public class Disciplina implements Serializable{
                     aux_dur=exames_aux.getDuracao();
                     dataplus_aux=data_aux;
                     dataplus_aux.add(Calendar.MINUTE, aux_dur);
-                    free=checkSala(data, dataplus, data_aux, dataplus_aux);
+                    free+=checkSala(data, dataplus, data_aux, dataplus_aux);
                 }
-                if(free==0){
+                if(free==listSalas.get(i).getExames().size()){
                     aux++;
                     System.out.println(aux + " - " + listSalas.get(i).getDepartamento() + " - " + listSalas.get(i).getNumero());
                 }   
@@ -197,15 +243,15 @@ public class Disciplina implements Serializable{
                 aux_dur=exames_aux.getDuracao();
                 dataplus_aux=data_aux;
                 dataplus_aux.add(Calendar.MINUTE, aux_dur);
-                free=checkSala(data, dataplus, data_aux, dataplus_aux);
+                free+=checkSala(data, dataplus, data_aux, dataplus_aux);
             }
-            if(free==0){
+            if(free==listSalas.get(i).getExames().size()){
                 aux++;
             }   
             if(aux==opcao)
                 sala_aux=listSalas.get(i);
         }
-        
+        */
         
         flag=1;
         do{
@@ -218,13 +264,13 @@ public class Disciplina implements Serializable{
         
         switch(opcao){
             case 1:
-                listExames.add(new ExameNR(data, duracao, sala_aux, 0));
+                listExames.add(new ExameNR(data, duracao,0));
                 break;
             case 2:   
-                listExames.add(new ExameNR(data, duracao, sala_aux, 1));
+                listExames.add(new ExameNR(data, duracao,1));
                 break;
             case 3:
-                listExames.add(new ExameE(data, duracao, sala_aux));
+                listExames.add(new ExameE(data, duracao));
                 break;
         }
     }
@@ -265,18 +311,18 @@ public class Disciplina implements Serializable{
         }
     }
     
-    private static int checkSala(Calendar data, Calendar dataplus, Calendar data_aux, Calendar dataplus_aux){
+    private static int checkHora(Calendar data, Calendar dataplus, Calendar dataAux, Calendar dataplusAux){
         int compare;
-        compare = data.compareTo(data_aux);
+        compare = data.compareTo(dataAux);
         if(compare==0) return 0;
         else if(compare <0){ //data antes de data_aux
-            compare=dataplus.compareTo(data_aux);
+            compare=dataplus.compareTo(dataAux);
             if(compare==0) return 1;
             else if(compare <0) return 1;
             else return 0;
         }
         else{ //data depois de data_aux
-            compare=data.compareTo(dataplus_aux);
+            compare=data.compareTo(dataplusAux);
             if(compare==0) return 1;
             else if(compare <0) return 0;
             else return 1;

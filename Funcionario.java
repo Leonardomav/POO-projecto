@@ -8,6 +8,7 @@ public abstract class Funcionario extends Pessoa implements Serializable{
     private int numeroMec;
     private String categoria;
     private Boolean tipo;
+    private ArrayList<Exame> vigilancias = new ArrayList<Exame>();
 
     public Funcionario(int numeroMec, String categoria, String nome, String email, Boolean tipo) {
         super(nome, email);
@@ -27,6 +28,11 @@ public abstract class Funcionario extends Pessoa implements Serializable{
     public Boolean getTipo() {
         return tipo;
     }
+
+    public ArrayList<Exame> getVigilancias() {
+        return vigilancias;
+    }
+    
     
     
     
