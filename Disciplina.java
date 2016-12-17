@@ -59,7 +59,7 @@ public class Disciplina implements Serializable{
             for (i=0; i<size_global; i++){
                 if(listFuncionariosGlobal.get(i).getTipo()){
                     auxDocente=(Docente) listFuncionariosGlobal.get(i);
-                    if((!(listDocentes.contains(auxDocente))) && (auxDocente!=docenteResp)){
+                    if((!(listDocentes.contains(auxDocente))) && (!auxDocente.equals(docenteResp))){
                         index++;
                         System.out.println(index + " - " + auxDocente.getNome());
                     }
@@ -77,7 +77,7 @@ public class Disciplina implements Serializable{
                 for (i=0; i < size_global; i++){
                     if(listFuncionariosGlobal.get(i).getTipo()){
                         auxDocente=(Docente) listFuncionariosGlobal.get(i);
-                        if((!(listDocentes.contains(auxDocente))) && (auxDocente!=docenteResp)){
+                        if((!(listDocentes.contains(auxDocente))) && (!auxDocente.equals(docenteResp))){
                             index++;
                             if(index==opcao){
                                 listDocentes.add(auxDocente);
