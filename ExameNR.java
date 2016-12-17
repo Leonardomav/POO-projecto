@@ -7,8 +7,8 @@ import java.util.Calendar;
 
 public class ExameNR extends Exame implements Serializable{
 
-    public ExameNR(Calendar dataHora, int duracao, Sala sala) {
-        super(dataHora, duracao, sala);
+    public ExameNR(Calendar dataHora, int duracao, Sala sala, int tipo) {
+        super(dataHora, duracao, sala, tipo); //tipo=0 Normal, Tipo=1 Recurso
     }
 
     @Override

@@ -135,7 +135,6 @@ public class Disciplina implements Serializable{
         Calendar data_aux, dataplus, dataplus_aux;
         Calendar data = new GregorianCalendar();
 
-        
         size_salas = listSalas.size();
         
         do{
@@ -219,8 +218,10 @@ public class Disciplina implements Serializable{
         
         switch(opcao){
             case 1:
+                listExames.add(new ExameNR(data, duracao, sala_aux, 0));
+                break;
             case 2:   
-                listExames.add(new ExameNR(data, duracao, sala_aux));
+                listExames.add(new ExameNR(data, duracao, sala_aux, 1));
                 break;
             case 3:
                 listExames.add(new ExameE(data, duracao, sala_aux));
@@ -279,6 +280,14 @@ public class Disciplina implements Serializable{
             if(compare==0) return 1;
             else if(compare <0) return 0;
             else return 1;
+        }
+    }
+
+    void imprimeExamesDisciplina() {
+        int i, size;
+        size = listExames.size();
+        for(i=0; i<size; i++){
+            System.out.println("\t\ti - " + listExames.get(i).toString());
         }
     }
 

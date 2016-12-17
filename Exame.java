@@ -1,6 +1,7 @@
 package projeto;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -12,13 +13,21 @@ public abstract class Exame implements Serializable{
     private final Sala sala;
     private ArrayList<Docente> listVigilantes;
     private ArrayList<NaoDocente> listFuncionarios;
-    private ArrayList<Integer> listAlunos;
+    private ArrayList<Long> listAlunos;
     private ArrayList<Float> listNotas;
+    private int tipo;
 
-    public Exame(Calendar dataHora, int duracao, Sala sala) {
+    public Exame(Calendar dataHora, int duracao, Sala sala, int tipo) {
         this.dataHora = dataHora;
         this.duracao = duracao;
         this.sala = sala;
+        this.tipo = tipo;
+    }
+    
+    @Override
+    public String toString() {
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return "Exame{" + "dataHora=" + formatter.format(getDataHora().getTime()) + ", duracao=" + duracao + ", sala=" + sala + ", listVigilantes=" + listVigilantes + ", listFuncionarios=" + listFuncionarios + ", listAlunos=" + listAlunos + ", listNotas=" + listNotas + ", tipo=" + tipo + '}';
     }
 
     public Calendar getDataHora() {

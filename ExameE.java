@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class ExameE extends Exame implements Serializable{
 
     public ExameE(Calendar dataHora, int duracao, Sala sala) {
-        super(dataHora, duracao, sala);
+        super(dataHora, duracao, sala, 2);
     }
 
     @Override

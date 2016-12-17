@@ -34,9 +34,9 @@ public class Projeto {
 //        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(2222222222L);
 //        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(2);
 //        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(1);
-        listSalas.add(new Sala("DEI", 1));
-        listSalas.add(new Sala("DEI", 2));
-        listSalas.add(new Sala("DEI", 3));
+//        listSalas.add(new Sala("DEI", 1));
+//        listSalas.add(new Sala("DEI", 2));
+//        listSalas.add(new Sala("DEI", 3));
         
 
         System.out.println(listCursosGlobal);
@@ -78,10 +78,10 @@ public class Projeto {
                     //criar_exame();
                     break;
                 case 6: 
-                    //criar_exame();
+                    listarExames(listCursosGlobal);
                     break;
                 case 7: 
-                    //criar_exame();
+                    listarAlunoseNotas(listCursosGlobal, listAlunosGlobal);
                     break;
                 case 8: 
                     //criar_exame();
@@ -446,9 +446,18 @@ public class Projeto {
             
         }while(flag==0);
     }
-    
-    private void listarExames(){
-        
+
+    private static void listarExames(ArrayList<Curso> listCursosGlobal) {
+        int i, size;
+        size = listCursosGlobal.size();
+        for(i=0; i<size; i++){
+            System.out.println("Curso: " + listCursosGlobal.get(i).getNome());
+            listCursosGlobal.get(i).imprimeExamesCurso();
+        }
+    }
+
+    private static void listarAlunoseNotas(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     private void criaSala(){

@@ -70,5 +70,14 @@ public class Curso implements Serializable{
     public void addListDisciplina(Disciplina Disciplina) {
         this.listDisciplina.add(Disciplina);
     }
+
+    void imprimeExamesCurso() {
+        int i, size;
+        size=listDisciplina.size();
+        for(i=0; i<size; i++){
+            System.out.println("\tDisciplina: " + listDisciplina.get(i).getNome());
+            listDisciplina.get(i).imprimeExamesDisciplina();
+        }
+    }
   
 }
