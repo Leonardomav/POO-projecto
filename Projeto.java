@@ -12,7 +12,7 @@ public class Projeto {
         ArrayList<Funcionario> listFuncionariosGlobal = new ArrayList<Funcionario>();
         ArrayList<Sala> listSalas = new ArrayList<Sala>();
 
-//        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
+//        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal, listSalas);
         
         //hardcode para testes
         
@@ -52,8 +52,6 @@ public class Projeto {
 //        System.out.println(listFuncionariosGlobal);
         
         menu(listCursosGlobal,listAlunosGlobal,listFuncionariosGlobal, listSalas);
-        
-        guardarEmFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
         
     }
     
@@ -98,6 +96,7 @@ public class Projeto {
                     System.out.println("Opção inválida");
                     break;
             }
+            guardarEmFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal, listSalas);
             System.out.print("Clique enter para continuar");
             esperaEnter();
         }
@@ -789,8 +788,9 @@ public class Projeto {
         return;
     }
     
-    private static void guardarEmFicheiro(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal){
+    private static void guardarEmFicheiro(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal, ArrayList<Sala> listSalas){
         FicheiroDeObjectos fo = new FicheiroDeObjectos();
+        FicheiroDeTexto ft = new FicheiroDeTexto();
         
         fo.abreEscrita("cursos.dat");
         fo.escreveObjecto(listCursosGlobal);
@@ -804,9 +804,12 @@ public class Projeto {
         fo.escreveObjecto(listFuncionariosGlobal);
         fo.fechaEscrita();
         
+        ft.abreEscrita("salas.txt");
+        //for(int i=0; i<listSalas.size(); i++)
+        
     }
     
-    private static void carregarDeFicheiro(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal) {
+    private static void carregarDeFicheiro(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal, ArrayList<Sala> listSalas) {
         FicheiroDeObjectos fo = new FicheiroDeObjectos();
         
         fo.abreLeitura("cursos.dat");
