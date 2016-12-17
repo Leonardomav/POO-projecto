@@ -30,8 +30,8 @@ public class Disciplina implements Serializable{
         return nome;
     }
     
-    public void addDocentes(ArrayList<Funcionario> listFuncionariosGlobal){
-        int size_global=listFuncionariosGlobal.size();
+    public void addDocentes(ArrayList<Docente> listDocentesGlobal){
+        int size_global=listDocentesGlobal.size();
         int index, flag=1, opcao;
         
         
@@ -39,11 +39,9 @@ public class Disciplina implements Serializable{
         while(flag==1){
             index=0;
             for (int j = 1; j <= size_global; j++){
-                if(listFuncionariosGlobal.get(j-1).getTipo()){
-                    if((!(listDocentes.contains(listFuncionariosGlobal.get(j-1).getNumeroMec())))&&(listFuncionariosGlobal.get(j-1).getNumeroMec()!=docenteResp)){
-                        index++;
-                        System.out.println(index + " - " + listFuncionariosGlobal.get(index-1).getNome());
-                    }
+                if((!(listDocentes.contains(listDocentesGlobal.get(j-1).getNumeroMec())))&&(listDocentesGlobal.get(j-1).getNumeroMec()!=docenteResp)){
+                    index++;
+                    System.out.println(index + " - " + listDocentesGlobal.get(index-1).getNome());
                 }
             }
             if(index!=0){
@@ -55,12 +53,10 @@ public class Disciplina implements Serializable{
                 }
                 index=0;
                 for (int j = 1; j <= size_global; j++){
-                    if(listFuncionariosGlobal.get(j-1).getTipo()){
-                        if(!(listDocentes.contains(listFuncionariosGlobal.get(j-1).getNumeroMec()))){
-                            index++;
-                            if(index==opcao){
-                                listDocentes.add(listFuncionariosGlobal.get(j-1).getNumeroMec());
-                            }
+                    if(!(listDocentes.contains(listDocentesGlobal.get(j-1).getNumeroMec()))){
+                        index++;
+                        if(index==opcao){
+                            listDocentes.add(listDocentesGlobal.get(j-1).getNumeroMec());
                         }
                     }
                 }
@@ -125,8 +121,8 @@ public class Disciplina implements Serializable{
     }
     
     public void criaExame( ArrayList<Sala> listSalas){
-        int ano, mes, dia, hora, min, flag, duracao, size_salas, opcao=0, aux_dur;
-        Sala sala_aux;
+        int ano, mes, dia, hora, min, flag, duracao, size_salas, opcao=0, aux_dur, free, aux;
+        Sala sala_aux = null;
         Exame exames_aux;
         Calendar data_aux, dataplus, dataplus_aux;
         Calendar data = new GregorianCalendar();
@@ -135,15 +131,15 @@ public class Disciplina implements Serializable{
         size_salas = listSalas.size();
         
         do{
-            System.out.print("Ano:");
+            System.out.print("Ano: ");
             ano=retornaInteiro();
-            System.out.print("Mes:");
+            System.out.print("Mes: ");
             mes=retornaInteiro();
-            System.out.println("Dia:");
+            System.out.print("Dia: ");
             dia=retornaInteiro();
-            System.out.println("Hora");  
+            System.out.print("Hora: ");  
             hora=retornaInteiro();
-            System.out.println("Min");
+            System.out.print("Min: ");
             min=retornaInteiro();
             flag=dataValida(dia, mes, ano, hora,  min);
         }while(flag==0);
@@ -157,34 +153,71 @@ public class Disciplina implements Serializable{
             if(duracao>0) flag=1;
         }while(flag==0);
         
-        
+        dataplus=data;
+        dataplus.add(Calendar.MINUTE, duracao);
     
         do{
+            aux=0;
             System.out.println("Exame em que sala: ");
-            for(int i=1; i<=size_salas; i++){
-                System.out.println(i + " - " + listSalas.get(i-1).getDepartamento() + " - " + listSalas.get(i-1).getNumero());
+            for(int i=0; i<size_salas; i++){
+                free=0;
+                for(int j=0;j<listSalas.get(i).getExames().size(); i++){
+                    exames_aux=listSalas.get(i).getExames().get(j);
+                    data_aux=exames_aux.getDataHora();
+                    aux_dur=exames_aux.getDuracao();
+                    dataplus_aux=data_aux;
+                    dataplus_aux.add(Calendar.MINUTE, aux_dur);
+                    free=checkSala(data, dataplus, data_aux, dataplus_aux);
+                }
+                if(free==0){
+                    aux++;
+                    System.out.println(aux + " - " + listSalas.get(i).getDepartamento() + " - " + listSalas.get(i).getNumero());
+                }   
             }
 
             System.out.print("-> ");
             opcao=retornaInteiro();
-            if(opcao>0 && opcao<size_salas+1) flag=0;
-            System.out.println("Opção Inválida");
+            if(opcao>0 && opcao<size_salas+1) flag=1;
+            else System.out.println("Opção Inválida");
+             
+        }while(flag==0);
         
-            dataplus=data;
-            dataplus.add(Calendar.MINUTE, duracao);
-            for(int i=0;i<listSalas.get(opcao-1).getExames().size(); i++){
-                exames_aux=listSalas.get(opcao-1).getExames().get(i);
+        for(int i=0; i<size_salas; i++){
+            free=0;
+            for(int j=0;j<listSalas.get(i).getExames().size(); i++){
+                exames_aux=listSalas.get(i).getExames().get(j);
                 data_aux=exames_aux.getDataHora();
                 aux_dur=exames_aux.getDuracao();
                 dataplus_aux=data_aux;
                 dataplus_aux.add(Calendar.MINUTE, aux_dur);
-                flag=checkSalas(data, dataplus, data_aux, dataplus_aux);
+                free=checkSala(data, dataplus, data_aux, dataplus_aux);
             }
+            if(free==0){
+                aux++;
+            }   
+            if(aux==opcao)
+                sala_aux=listSalas.get(i);
+        }
+        
+        
+        flag=1;
+        do{
+            System.out.println("Deseja Criar um Exame :\n1 - Normal\n2 - Recurso\n3 - Especial");
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<4) flag=1;
+            else System.out.println("Opção Inválida");
         }while(flag==0);
         
-        System.out.println("Deseja Criar um Exame :\n1 - Normal\n2 - Recurso\n3 - Especial");
-        //........
-        
+        switch(opcao){
+            case 1:
+            case 2:   
+                listExames.add(new ExameNR(data, duracao, sala_aux));
+                break;
+            case 3:
+                listExames.add(new ExameE(data, duracao, sala_aux));
+                break;
+        }
     }
 
     public void addListAlunos(long Aluno) {
@@ -223,7 +256,7 @@ public class Disciplina implements Serializable{
         }
     }
     
-    private static int checkSalas(Calendar data, Calendar dataplus, Calendar data_aux, Calendar dataplus_aux){
+    private static int checkSala(Calendar data, Calendar dataplus, Calendar data_aux, Calendar dataplus_aux){
         int compare;
         compare = data.compareTo(data_aux);
         if(compare==0) return 0;

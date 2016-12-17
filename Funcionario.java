@@ -7,13 +7,11 @@ import java.util.ArrayList;
 public abstract class Funcionario extends Pessoa implements Serializable{
     private int numeroMec;
     private String categoria;
-    private Boolean tipo;
 
-    public Funcionario(int numeroMec, String categoria, String nome, String email, Boolean tipo) {
+    public Funcionario(int numeroMec, String categoria, String nome, String email) {
         super(nome, email);
         this.numeroMec = numeroMec;
         this.categoria = categoria;
-        this.tipo = tipo;
     }
     
     public void imprimeExames(ArrayList<Curso> listaCursos){
@@ -22,10 +20,6 @@ public abstract class Funcionario extends Pessoa implements Serializable{
 
     public int getNumeroMec() {
         return numeroMec;
-    }
-
-    public Boolean getTipo() {
-        return tipo;
     }
     
     
