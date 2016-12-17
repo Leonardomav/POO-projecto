@@ -9,7 +9,7 @@ public class Projeto {
     /**
     * Função main à qual se faz a primeira chamada.
     */
-    public static void main() {
+    public static void main(String[] args) {
         ArrayList<Curso> listCursosGlobal = new ArrayList<Curso>();
         ArrayList<Aluno> listAlunosGlobal = new ArrayList<Aluno>();
         ArrayList<Funcionario> listFuncionariosGlobal = new ArrayList<Funcionario>();
@@ -50,8 +50,8 @@ public class Projeto {
         listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(jose);
         listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(joao);
         listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(miguel);
-        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(carlos);
-        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(paulo);
+        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(vasco);
+        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(joaquim);
         listSalas.add(new Sala("DEI", 1));
         listSalas.add(new Sala("DEI", 2));
         listSalas.add(new Sala("DEI", 3));
