@@ -17,31 +17,38 @@ public class Projeto {
         //hardcode para testes
         
         listCursosGlobal.add(new Curso("LEI", "Mestrado", 5));
-        Aluno leo = new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursosGlobal.get(0), "Normal");
-        listAlunosGlobal.add(leo);
-        Aluno tiago = new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursosGlobal.get(0), "Normal");
-        listAlunosGlobal.add(tiago);
-        Aluno artur = new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursosGlobal.get(0), "Normal");
-        listAlunosGlobal.add(artur);
-        Aluno outro = new Aluno("O outro", "Dali",4444444444L, 2012, listCursosGlobal.get(0), "Normal");
-        listAlunosGlobal.add(outro);
-        Docente ernesto = new Docente("Ernesto", "lol", "lol", 1, "lol");
-        listFuncionariosGlobal.add(ernesto);
-        Docente cordeiro = new Docente("Cordeiro", "lol", "lol", 2, "lol");
-        listFuncionariosGlobal.add(cordeiro);
-        Docente vasco = new Docente("Vasco", "lol", "lol", 3, "lol");
+        Aluno joao = new Aluno("Joao", "joao@sapo.pt", 1111111111L, 2015, listCursosGlobal.get(0), "Normal");
+        listAlunosGlobal.add(joao);
+        Aluno pedro = new Aluno("Pedro", "pedro@gmail.com",2222222222L, 2015, listCursosGlobal.get(0), "Normal");
+        listAlunosGlobal.add(pedro);
+        Aluno jose = new Aluno("Jose", "jose@yahoo.com",3333333333L, 2014, listCursosGlobal.get(0), "Atleta");
+        listAlunosGlobal.add(jose);
+        Aluno miguel = new Aluno("Miguel", "miguel@hotmail.com",4444444444L, 2012, listCursosGlobal.get(0), "Ultimo ano");
+        listAlunosGlobal.add(miguel);
+        Docente carlos = new Docente("Carlos", "carlos@abc.com", "Robotica", 1, "Catedratico");
+        listFuncionariosGlobal.add(carlos);
+        Docente paulo = new Docente("Paulo", "paulo@aaa.com", "Redes", 2, "Auxiliar");
+        listFuncionariosGlobal.add(paulo);
+        Docente vasco = new Docente("Vasco", "vasco@bbb.com", "IA", 3, "Subsituto");
         listFuncionariosGlobal.add(vasco);
-        Docente douradinho = new Docente("Douradinho", "lol", "lol", 4, "lol");
-        listFuncionariosGlobal.add(douradinho);
-        listCursosGlobal.get(0).addListDisciplina(new Disciplina("IPRP", ernesto));
-        listCursosGlobal.get(0).addListDisciplina(new Disciplina("POO", cordeiro));
+        Docente joaquim = new Docente("Joaquim", "joaquim@ccc.com", "Hardware", 4, "Efectivo");
+        listFuncionariosGlobal.add(joaquim);
+        NaoDocente manuel = new NaoDocente("Manuel", "manuel@la.com", "Limpeza", 4, "Efectivo");
+        listFuncionariosGlobal.add(manuel);
+        NaoDocente fernando = new NaoDocente("Fernando", "fernado@sim.com", "HelpDesk", 4, "Efectivo");
+        listFuncionariosGlobal.add(fernando);
+        NaoDocente joana = new NaoDocente("Joana", "joana@casa.pt", "Agendamento", 4, "Efectivo");
+        listFuncionariosGlobal.add(joana);
+        listCursosGlobal.get(0).addListDisciplina(new Disciplina("IPRP", carlos));
+        listCursosGlobal.get(0).addListDisciplina(new Disciplina("POO", paulo));
         listCursosGlobal.get(0).addListDisciplina(new Disciplina("PPP", vasco));
-        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(leo);
-        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(tiago);
-        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(leo);
-        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(tiago);
-        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(cordeiro);
-        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(ernesto);
+        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(joao);
+        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(pedro);
+        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(jose);
+        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(joao);
+        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(miguel);
+        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(carlos);
+        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(paulo);
         listSalas.add(new Sala("DEI", 1));
         listSalas.add(new Sala("DEI", 2));
         listSalas.add(new Sala("DEI", 3));
@@ -791,6 +798,10 @@ public class Projeto {
     private static void guardarEmFicheiro(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal, ArrayList<Sala> listSalas){
         FicheiroDeObjectos fo = new FicheiroDeObjectos();
         FicheiroDeTexto ft = new FicheiroDeTexto();
+        Sala auxSala;
+        ArrayList<Exame> listExm;
+        String fnl, auxString;
+        int size;
         
         fo.abreEscrita("cursos.dat");
         fo.escreveObjecto(listCursosGlobal);
@@ -804,13 +815,29 @@ public class Projeto {
         fo.escreveObjecto(listFuncionariosGlobal);
         fo.fechaEscrita();
         
-        ft.abreEscrita("salas.txt");
-        //for(int i=0; i<listSalas.size(); i++)
+//        ft.abreEscrita("salas.txt");
+//        size=listSalas.size();
+//        for(int i=0; i<size; i++){
+//            System.out.println("REPEAT");
+//            auxSala=listSalas.get(i);
+//            listExm=auxSala.getExames();
+//            auxString="";
+//            for(i=0; i<listExm.size(); i++){
+//                auxString+=","; //+referencia ao exame
+//            }
+//            fnl=auxSala.getNumero() + "-" + auxSala.getDepartamento() + "-" + auxString;
+//        }
+//        ft.fechaEscrita();
         
     }
     
     private static void carregarDeFicheiro(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal, ArrayList<Sala> listSalas) {
         FicheiroDeObjectos fo = new FicheiroDeObjectos();
+        FicheiroDeTexto ft = new FicheiroDeTexto();
+        String linha;
+        String delims = "[-]";
+        String[] tokens;
+        Sala novaSala;
         
         fo.abreLeitura("cursos.dat");
         listCursosGlobal.addAll((ArrayList<Curso>) fo.leObjecto());
@@ -824,6 +851,14 @@ public class Projeto {
         listFuncionariosGlobal.addAll((ArrayList<Funcionario>) fo.leObjecto());
         fo.fechaLeitura();
         
+//        ft.abreLeitura("salas.txt");
+//        while((linha=ft.leLinha())!=null){
+//            tokens=linha.split(delims);
+//            novaSala = new Sala(tokens[1], Integer.parseInt(tokens[0]));
+//            //token[2] fazer token e ir buscar varias referencias
+//        }
+//        ft.fechaEscrita();
+                
     }
     
     private static void setup(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal){

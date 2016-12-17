@@ -48,8 +48,4 @@ public class Aluno extends Pessoa implements Serializable{
         return numeroEst;
     }
     
-    public void imprimeExames(){
-        
-    }
-    
 }
