@@ -14,10 +14,4 @@ public class Docente extends Funcionario implements Serializable{
     public String toString() {
         return "Docente{" + "areaInv=" + areaInv + '}';
     }
-    
-    
-    
-    
-    
-    
 }

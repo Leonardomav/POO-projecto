@@ -38,10 +38,13 @@ public class Disciplina implements Serializable{
         System.out.println("Qual docente quer adicionar?");
         while(flag==1){
             index=0;
-            for (int j = 1; j <= size_global; j++){
-                if((!(listDocentes.contains(listDocentesGlobal.get(j-1).getNumeroMec())))&&(listDocentesGlobal.get(j-1).getNumeroMec()!=docenteResp)){
-                    index++;
-                    System.out.println(index + " - " + listDocentesGlobal.get(index-1).getNome());
+
+            for (int j = 0; j < size_global; j++){
+                if(listFuncionariosGlobal.get(j).getTipo()){
+                    if((!(listDocentes.contains(listFuncionariosGlobal.get(j).getNumeroMec())))&&(listFuncionariosGlobal.get(j).getNumeroMec()!=docenteResp)){
+                        index++;
+                        System.out.println(index + " - " + listFuncionariosGlobal.get(j).getNome());
+                    }
                 }
             }
             if(index!=0){
@@ -52,15 +55,19 @@ public class Disciplina implements Serializable{
                     System.out.println("Opção Inválida");
                 }
                 index=0;
-                for (int j = 1; j <= size_global; j++){
-                    if(!(listDocentes.contains(listDocentesGlobal.get(j-1).getNumeroMec()))){
-                        index++;
-                        if(index==opcao){
-                            listDocentes.add(listDocentesGlobal.get(j-1).getNumeroMec());
+
+                for (int j = 0; j < size_global; j++){
+                    if(listFuncionariosGlobal.get(j).getTipo()){
+                        if((!(listDocentes.contains(listFuncionariosGlobal.get(j).getNumeroMec())))&&(listFuncionariosGlobal.get(j).getNumeroMec()!=docenteResp)){
+                            index++;
+                            if(index==opcao){
+                                listDocentes.add(listFuncionariosGlobal.get(j).getNumeroMec());
+                                break;
+                            }
                         }
                     }
                 }
-                System.out.print("Deseja adicionar mais algum docente a esta disciplina?\n1 - Sim\n2 - Não\n->");
+                System.out.print("Deseja adicionar mais algum docente a esta disciplina?\n1 - Sim\n2 - Não\n-> ");
                 while(true){
                     opcao=retornaInteiro();
                     if(opcao==1 || opcao==2) break;
@@ -69,7 +76,7 @@ public class Disciplina implements Serializable{
                 if(opcao==2) flag=0;
             }
             else{
-                System.out.println("Não existem alunos não inscritos na cadeira!");
+                System.out.println("Não existem docentes não inscritos na cadeira!");
                 flag=0;
             }
         }
@@ -83,10 +90,10 @@ public class Disciplina implements Serializable{
         System.out.println("Qual aluno quer adicionar?");
         while(flag==1){
             index=0;
-            for (int j = 1; j <= size_global; j++){
-                if(!(listAlunos.contains(listAlunosGlobal.get(j-1).getNumeroEst()))){
+            for (int j = 0; j < size_global; j++){
+                if(!(listAlunos.contains(listAlunosGlobal.get(j).getNumeroEst()))){
                     index++;
-                    System.out.println(index + " - " + listAlunosGlobal.get(index-1).getNome());
+                    System.out.println(index + " - " + listAlunosGlobal.get(j).getNome());
                 }
             }
             if(index!=0){
@@ -97,15 +104,16 @@ public class Disciplina implements Serializable{
                     System.out.println("Opção Inválida");
                 }
                 index=0;
-                for (int j = 1; j <= size_global; j++){
-                    if(!(listAlunos.contains(listAlunosGlobal.get(j-1).getNumeroEst()))){
+                for (int j = 0; j < size_global; j++){
+                    if(!(listAlunos.contains(listAlunosGlobal.get(j).getNumeroEst()))){
                         index++;
                         if(index==opcao){
-                            listAlunos.add(listAlunosGlobal.get(j-1).getNumeroEst());
+                            listAlunos.add(listAlunosGlobal.get(j).getNumeroEst());
+                            break;
                         }
                     }
                 }
-                System.out.print("Deseja adicionar mais algum aluno a esta disciplina?\n1 - Sim\n2 - Não\n->");
+                System.out.print("Deseja adicionar mais algum aluno a esta disciplina?\n1 - Sim\n2 - Não\n-> ");
                 while(true){
                     opcao=retornaInteiro();
                     if(opcao==1 || opcao==2) break;
