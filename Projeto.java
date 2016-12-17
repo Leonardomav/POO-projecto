@@ -17,29 +17,37 @@ public class Projeto {
         //hardcode para testes
         
 //        listCursosGlobal.add(new Curso("LEI", "Mestrado", 5));
-//        listAlunosGlobal.add(new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursosGlobal.get(0), "Normal"));
-//        listAlunosGlobal.add(new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursosGlobal.get(0), "Normal"));
-//        listAlunosGlobal.add(new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursosGlobal.get(0), "Normal"));
-//        listAlunosGlobal.add(new Aluno("O outro", "Dali",4444444444L, 2012, listCursosGlobal.get(0), "Normal"));
-//        listFuncionariosGlobal.add(new Docente("Ernesto", "lol", "lol", 1, "lol"));
-//        listFuncionariosGlobal.add(new Docente("Cordeiro", "lol", "lol", 2, "lol"));
-//        listFuncionariosGlobal.add(new Docente("Vasco", "lol", "lol", 3, "lol"));
-//        listFuncionariosGlobal.add(new Docente("Douradinho", "lol", "lol", 4, "lol"));
-//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("IPRP", 1));
-//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("POO", 2));
-//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("PPP", 3));
-//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(1111111111L);
-//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(2222222222L);
-//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(1111111111L);
-//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(2222222222L);
-//        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(2);
-//        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(1);
-//        listSalas.add(new Sala("DEI", 1));
-//        listSalas.add(new Sala("DEI", 2));
-//        listSalas.add(new Sala("DEI", 3));
+//        Aluno leo = new Aluno("Leonardo", "Sapo", 1111111111L, 2015, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(leo);
+//        Aluno tiago = new Aluno("Tiago", "Gmail",2222222222L, 2015, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(tiago);
+//        Aluno artur = new Aluno("Artur", "Yahoo",3333333333L, 2014, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(artur);
+//        Aluno outro = new Aluno("O outro", "Dali",4444444444L, 2012, listCursosGlobal.get(0), "Normal");
+//        listAlunosGlobal.add(outro);
+//        Docente ernesto = new Docente("Ernesto", "lol", "lol", 1, "lol");
+//        listFuncionariosGlobal.add(ernesto);
+//        Docente cordeiro = new Docente("Cordeiro", "lol", "lol", 2, "lol");
+//        listFuncionariosGlobal.add(cordeiro);
+//        Docente vasco = new Docente("Vasco", "lol", "lol", 3, "lol");
+//        listFuncionariosGlobal.add(vasco);
+//        Docente douradinho = new Docente("Douradinho", "lol", "lol", 4, "lol");
+//        listFuncionariosGlobal.add(douradinho);
+//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("IPRP", ernesto));
+//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("POO", cordeiro));
+//        listCursosGlobal.get(0).addListDisciplina(new Disciplina("PPP", vasco));
+//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(leo);
+//        listCursosGlobal.get(0).getListDisciplina().get(0).addListAlunos(tiago);
+//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(leo);
+//        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(tiago);
+//        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(cordeiro);
+//        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(ernesto);
+        listSalas.add(new Sala("DEI", 1));
+        listSalas.add(new Sala("DEI", 2));
+        listSalas.add(new Sala("DEI", 3));
         
 
-        System.out.println(listCursosGlobal);
+//        System.out.println(listCursosGlobal);
 //        System.out.println(listAlunosGlobal);
 //        System.out.println(listFuncionariosGlobal);
         
@@ -81,7 +89,7 @@ public class Projeto {
                     listarExames(listCursosGlobal);
                     break;
                 case 7: 
-                    listarAlunoseNotas(listCursosGlobal, listAlunosGlobal);
+                    listarAlunosDeExame(listCursosGlobal, listAlunosGlobal);
                     break;
                 case 8: 
                     //criar_exame();
@@ -415,7 +423,7 @@ public class Projeto {
                 System.out.print("-> ");
                 opcao=retornaInteiro();
                 if(opcao>0 && opcao<size_cursos+1) break;
-                System.out.println("Opção Inválida");
+                System.out.println("Opção inválida");
             }
             
             listDisp=listCursosGlobal.get(opcao-1).getListDisciplina();
@@ -429,7 +437,7 @@ public class Projeto {
                 System.out.print("-> ");
                 opcao=retornaInteiro();
                 if(opcao>0 && opcao<size_disp+1) break;
-                System.out.println("Opção Inválida");
+                System.out.println("Opção inválida");
             }
             
             listDisp.get(opcao-1).addDocentes(listFuncionariosGlobal);
@@ -437,7 +445,7 @@ public class Projeto {
             
             
             while(true){
-                System.out.print("Deseja Adicionar algo a mais alguma disciplina?\n1 - Sim\n2 - Não\n-> ");
+                System.out.print("Deseja adicionar algo a mais alguma disciplina?\n1 - Sim\n2 - Não\n-> ");
                 opcao=retornaInteiro();
                 if(opcao==1 || opcao==2) break;
                 System.out.println("Opção Inválida");
@@ -456,8 +464,52 @@ public class Projeto {
         }
     }
 
-    private static void listarAlunoseNotas(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static void listarAlunosDeExame(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal) {
+        int i, opcao, size_cursos, size_disp, size_alunos;
+        ArrayList<Disciplina> listDisp;
+        ArrayList<Aluno> listAlun;
+        Exame auxExame;
+        
+        System.out.println("");
+        
+        size_cursos=listCursosGlobal.size();
+        while(true){
+            System.out.println("Quer escolher um exame de que curso?: ");
+            for (i = 0; i<size_cursos; i++)
+                System.out.println(i+1 + " - " + listCursosGlobal.get(i).getNome());
+
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<size_cursos+1) break;
+            System.out.println("Opção inválida");
+        }
+
+        listDisp=listCursosGlobal.get(opcao-1).getListDisciplina();
+        size_disp=listDisp.size();
+
+        while(true){
+            System.out.println("Disciplina: ");
+            for (i=0; i<size_disp; i++)
+                System.out.println(i+1 + " - " + listDisp.get(i).getNome());
+
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<size_disp+1) break;
+            System.out.println("Opção inválida");
+        }
+
+
+        listAlun = listDisp.get(opcao-1).getListAlunos();
+        size_alunos=listAlun.size();
+        
+        //INACABADO
+        
+//        for(i=0; i<size_alunos; i++){
+//            System.out.print("Aluno: " + listAlun.get(i));
+//            if()
+//                System.out.print("Nota");
+//        }
+        
     }
     
     private void criaSala(){

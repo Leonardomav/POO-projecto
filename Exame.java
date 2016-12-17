@@ -13,7 +13,7 @@ public abstract class Exame implements Serializable{
     private Sala sala;
     private ArrayList<Docente> listVigilantes;
     private ArrayList<NaoDocente> listFuncionarios;
-    private ArrayList<Long> listAlunos;
+    private ArrayList<Aluno> listAlunos;
     private ArrayList<Float> listNotas;
     private int tipo;
 
