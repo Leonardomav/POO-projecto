@@ -12,7 +12,7 @@ public class Projeto {
         ArrayList<Funcionario> listFuncionariosGlobal = new ArrayList<Funcionario>();
         ArrayList<Sala> listSalas = new ArrayList<Sala>();
 
-//        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
+        //carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
         
         //hardcode para testes
         
@@ -80,7 +80,7 @@ public class Projeto {
                     //criar_exame();
                     break;
                 case 4: 
-                    //criar_exame();
+                    inscreverAlunoExame(listCursosGlobal, listAlunosGlobal);
                     break;
                 case 5: 
                     //criar_exame();
@@ -89,7 +89,7 @@ public class Projeto {
                     listarExames(listCursosGlobal);
                     break;
                 case 7: 
-                    listarAlunosDeExame(listCursosGlobal, listAlunosGlobal);
+                    listarAlunosDeExame(listCursosGlobal);
                     break;
                 case 8: 
                     //criar_exame();
@@ -105,7 +105,10 @@ public class Projeto {
                     break;
                 default: 
                     System.out.println("Opção inválida");
+                    break;
             }
+            System.out.print("Clique enter para continuar");
+            esperaEnter();
         }
         
     }
@@ -288,7 +291,6 @@ public class Projeto {
         Docente novo_docente;
         
         
-        
         System.out.print("Quantos docentes quer criar?\n-> ");
         aux_int=retornaInteiro();
         for(int i=0; i<aux_int; i++){
@@ -464,52 +466,154 @@ public class Projeto {
         }
     }
 
-    private static void listarAlunosDeExame(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal) {
-        int i, opcao, size_cursos, size_disp, size_alunos;
+    private static void listarAlunosDeExame(ArrayList<Curso> listCursosGlobal) {
+        int i, opcao, sizeCursos, sizeDisp, sizeExames, sizeAlunos, sizeNotas;
         ArrayList<Disciplina> listDisp;
+        ArrayList<Exame> listExam;
         ArrayList<Aluno> listAlun;
+        ArrayList<Float> listNotas;
         Exame auxExame;
         
-        System.out.println("");
-        
-        size_cursos=listCursosGlobal.size();
+        sizeCursos=listCursosGlobal.size();
+        if(sizeCursos==0){
+            System.out.println("Não existem cursos.");
+            return;
+        }
         while(true){
-            System.out.println("Quer escolher um exame de que curso?: ");
-            for (i = 0; i<size_cursos; i++)
+            System.out.println("Escolha o curso do exame: ");
+            for (i = 0; i<sizeCursos; i++)
                 System.out.println(i+1 + " - " + listCursosGlobal.get(i).getNome());
 
             System.out.print("-> ");
             opcao=retornaInteiro();
-            if(opcao>0 && opcao<size_cursos+1) break;
+            if(opcao>0 && opcao<sizeCursos+1) break;
             System.out.println("Opção inválida");
         }
 
         listDisp=listCursosGlobal.get(opcao-1).getListDisciplina();
-        size_disp=listDisp.size();
-
+        
+        sizeDisp=listDisp.size();
+        if(sizeDisp==0){
+            System.out.println("Não existem disciplinas no curso escolhido.");
+            return;
+        }
         while(true){
-            System.out.println("Disciplina: ");
-            for (i=0; i<size_disp; i++)
+            System.out.println("Escolha a disciplina do exame: ");
+            for (i=0; i<sizeDisp; i++)
                 System.out.println(i+1 + " - " + listDisp.get(i).getNome());
 
             System.out.print("-> ");
             opcao=retornaInteiro();
-            if(opcao>0 && opcao<size_disp+1) break;
+            if(opcao>0 && opcao<sizeDisp+1) break;
             System.out.println("Opção inválida");
         }
 
 
-        listAlun = listDisp.get(opcao-1).getListAlunos();
-        size_alunos=listAlun.size();
+        listExam = listDisp.get(opcao-1).getListExames();
         
-        //INACABADO
+        sizeExames=listExam.size();
+        if(sizeExames==0){
+            System.out.println("Não existem exames na disciplina escolhida.");
+            return;
+        }        
+        while(true){
+            System.out.println("Escolha o exame: ");
+            for (i=0; i<sizeExames; i++)
+                System.out.println(i+1 + " - " + listExam.get(i));
+
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<sizeExames+1) break;
+            System.out.println("Opção inválida");
+        }
         
-//        for(i=0; i<size_alunos; i++){
-//            System.out.print("Aluno: " + listAlun.get(i));
-//            if()
-//                System.out.print("Nota");
-//        }
+        auxExame = listExam.get(opcao-1);
         
+        listAlun = auxExame.getListAlunos();
+        listNotas = auxExame.getListNotas();
+        
+        sizeAlunos=listAlun.size();
+        sizeNotas=listNotas.size();
+        
+        if(sizeAlunos==0){
+            System.out.println("Não existem alunos inscritos neste exame.");
+            return;
+        }    
+        for (i=0; i<sizeAlunos; i++){
+            System.out.println("Aluno " + i + ": " + listAlun.get(i));
+            if(sizeNotas!=0){
+                System.out.println("\tNota: " + listNotas.get(i));
+            }
+            System.out.println("");
+        }
+    }
+
+    private static void inscreverAlunoExame(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal) {
+        int i, opcao, sizeCursos, sizeDisp, sizeExames;
+        ArrayList<Disciplina> listDisp;
+        ArrayList<Exame> listExam;
+        Disciplina auxDisciplina;
+        Exame auxExame;
+        Aluno auxAluno;
+        
+        sizeCursos=listCursosGlobal.size();
+        if(sizeCursos==0){
+            System.out.println("Não existem cursos.");
+            return;
+        }
+        while(true){
+            System.out.println("Escolha o curso do exame: ");
+            for (i = 0; i<sizeCursos; i++)
+                System.out.println(i+1 + " - " + listCursosGlobal.get(i).getNome());
+
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<sizeCursos+1) break;
+            System.out.println("Opção inválida");
+        }
+
+        listDisp=listCursosGlobal.get(opcao-1).getListDisciplina();
+        
+        sizeDisp=listDisp.size();
+        if(sizeDisp==0){
+            System.out.println("Não existem disciplinas no curso escolhido.");
+            return;
+        }
+        while(true){
+            System.out.println("Escolha a disciplina do exame: ");
+            for (i=0; i<sizeDisp; i++)
+                System.out.println(i+1 + " - " + listDisp.get(i).getNome());
+
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<sizeDisp+1) break;
+            System.out.println("Opção inválida");
+        }
+
+        auxDisciplina = listDisp.get(opcao-1);
+        listExam = auxDisciplina.getListExames();
+        
+        sizeExames=listExam.size();
+        if(sizeExames==0){
+            System.out.println("Não existem exames na disciplina escolhida.");
+            return;
+        }        
+        while(true){
+            System.out.println("Escolha o exame: ");
+            for (i=0; i<sizeExames; i++)
+                System.out.println(i+1 + " - " + listExam.get(i));
+
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<sizeExames+1) break;
+            System.out.println("Opção inválida");
+        }
+        
+        auxExame = listExam.get(opcao-1);
+        auxAluno=auxExame.inscreveAluno(listAlunosGlobal, auxDisciplina);
+        if(auxAluno==null)
+            return;
+        auxAluno.addListInscricoes(auxExame);
     }
     
     private void criaSala(){
@@ -534,6 +638,12 @@ public class Projeto {
     public static String retornaString(){
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
+    }
+    
+    private static void esperaEnter(){
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine();
+        return;
     }
     
     private static void guardarEmFicheiro(ArrayList<Curso> listCursosGlobal, ArrayList<Aluno> listAlunosGlobal, ArrayList<Funcionario> listFuncionariosGlobal){
