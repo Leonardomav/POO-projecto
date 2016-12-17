@@ -9,10 +9,10 @@ public class Projeto {
     public static void main(String[] args) {
         ArrayList<Curso> listCursosGlobal = new ArrayList<Curso>();
         ArrayList<Aluno> listAlunosGlobal = new ArrayList<Aluno>();
-        ArrayList<Funcionario> listFuncionariosGlobal = new ArrayList<Funcionario>();
+        ArrayList<Docente> listDocentesGlobal = new ArrayList<Docente>();
         ArrayList<Sala> listSalas = new ArrayList<Sala>();
 
-        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
+        carregarDeFicheiro(listCursosGlobal, listAlunosGlobal, listDocentesGlobal);
         
         //hardcode para testes
         
@@ -34,18 +34,18 @@ public class Projeto {
 //        listCursosGlobal.get(0).getListDisciplina().get(1).addListAlunos(2222222222L);
 //        listCursosGlobal.get(0).getListDisciplina().get(0).addListDocentes(2);
 //        listCursosGlobal.get(0).getListDisciplina().get(1).addListDocentes(1);
-//        listSalas.add(new Sala("DEI", 1));
-//        listSalas.add(new Sala("DEI", 2));
-//        listSalas.add(new Sala("DEI", 3));
+        listSalas.add(new Sala("DEI", 1));
+        listSalas.add(new Sala("DEI", 2));
+        listSalas.add(new Sala("DEI", 3));
         
 
         System.out.println(listCursosGlobal);
 //        System.out.println(listAlunosGlobal);
 //        System.out.println(listFuncionariosGlobal);
         
-        menu(listCursosGlobal,listAlunosGlobal,listFuncionariosGlobal, listSalas);
+        menu(listCursosGlobal,listAlunosGlobal,listDocentesGlobal, listSalas);
         
-        guardarEmFicheiro(listCursosGlobal, listAlunosGlobal, listFuncionariosGlobal);
+        guardarEmFicheiro(listCursosGlobal, listAlunosGlobal, listDocentesGlobal);
         
     }
     
@@ -273,7 +273,6 @@ public class Projeto {
         }
         
     }
-    
     private static void criaDocente(ArrayList<Funcionario> listFuncionariosGlobal){
         int aux_int, numero, size, flag;
         String areaInv, email, categoria, nome;
@@ -302,6 +301,7 @@ public class Projeto {
                 for(int j=0; j<size;j++){
                     auxFuncionario=listFuncionariosGlobal.get(j);
                     if(auxFuncionario.getNumeroMec()==numero){
+
                         flag=0;
                         System.out.println("Numero já existe. Insira de novo!");
                     }
@@ -311,6 +311,7 @@ public class Projeto {
             novo_docente = new Docente(nome, email, areaInv, numero, categoria);
             listFuncionariosGlobal.add(novo_docente);
             System.out.println("Docente adicionado.");
+
         }
     }
 
@@ -383,7 +384,7 @@ public class Projeto {
             }
             
             for(int j=0; j<opcao; j++){
-                aux_curso.criaDisciplina(listFuncionariosGlobal);
+                aux_curso.criaDisciplina(listDocentesGlobal);
             }
             
             while(true){
@@ -431,7 +432,7 @@ public class Projeto {
                 System.out.println("Opção Inválida");
             }
             
-            listDisp.get(opcao-1).addDocentes(listFuncionariosGlobal);
+            listDisp.get(opcao-1).addDocentes(listDocentesGlobal);
             listDisp.get(opcao-1).addAlunos(listAlunosGlobal);
             
             
@@ -485,8 +486,8 @@ public class Projeto {
         fo.escreveObjecto(listAlunosGlobal);
         fo.fechaEscrita();
         
-        fo.abreEscrita("funcionarios.dat");
-        fo.escreveObjecto(listFuncionariosGlobal);
+        fo.abreEscrita("docentes.dat");
+        fo.escreveObjecto(listDocentesGlobal);
         fo.fechaEscrita();
         
     }
@@ -502,8 +503,8 @@ public class Projeto {
         listAlunosGlobal.addAll((ArrayList<Aluno>) fo.leObjecto());
         fo.fechaLeitura();
         
-        fo.abreLeitura("funcionarios.dat");
-        listFuncionariosGlobal.addAll((ArrayList<Funcionario>) fo.leObjecto());
+        fo.abreLeitura("docentes.dat");
+        listDocentesGlobal.addAll((ArrayList<Docente>) fo.leObjecto());
         fo.fechaLeitura();
         
     }
