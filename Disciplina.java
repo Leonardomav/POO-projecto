@@ -453,8 +453,40 @@ public class Disciplina implements Serializable{
         int i, size;
         size = listExames.size();
         for(i=0; i<size; i++){
-            System.out.println("\t\ti - " + listExames.get(i).toString());
+            System.out.println("\t\t" + i+1 + " - " + listExames.get(i).toString());
         }
+    }
+
+    void lancaNotas() {
+        int opcao;
+        
+        while(true){
+            System.out.println("Qual exame?");
+            for (int i = 0; i < listExames.size(); i++)
+                System.out.println(i+1 + " - " + listExames.get(i).toString());
+
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<=listExames.size()) break;
+            System.out.println("Opção Inválida");
+        }
+        listExames.get(opcao-1).defineNotas();
+    }
+
+    void imprimeFuncionariosExame() {
+        int opcao;
+        
+        while(true){
+            System.out.println("Qual exame?");
+            for (int i = 0; i < listExames.size(); i++)
+                System.out.println(i+1 + " - " + listExames.get(i).toString());
+
+            System.out.print("-> ");
+            opcao=retornaInteiro();
+            if(opcao>0 && opcao<=listExames.size()) break;
+            System.out.println("Opção Inválida");
+        }
+        listExames.get(opcao-1).imprimeFuncionarios();
     }
     
     

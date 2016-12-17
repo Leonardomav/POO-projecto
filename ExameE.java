@@ -27,7 +27,7 @@ public class ExameE extends Exame implements Serializable{
             auxAluno = listAlunos.get(i);
             if(!(auxAluno.getRegime().equals("Normal")) && auxDisciplina.getListAlunos().contains(auxAluno) && !(getListAlunos().contains(auxAluno))){
                 index++;
-                System.out.println("Aluno " + index + ": " + listAlunos.get(i).getNome() + " " + listAlunos.get(i).getNumeroEst());
+                System.out.println("Aluno " + index + ": " + auxAluno);
             }
         }
         if(index==0){

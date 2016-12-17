@@ -25,9 +25,9 @@ public class ExameNR extends Exame implements Serializable{
         index=0;
         for(i=0; i<sizeAlunos; i++){
             auxAluno = listAlunos.get(i);
-            if(auxDisciplina.getListAlunos().contains(auxAluno) && !(getListAlunos().contains(auxAluno))){
+            if(auxDisciplina.getListAlunos().contains(auxAluno) && (!(getListAlunos().contains(auxAluno)))){
                 index++;
-                System.out.println("Aluno " + index + ": " + listAlunos.get(i).getNome() + " " + listAlunos.get(i).getNumeroEst());
+                System.out.println("Aluno " + index + ": " + auxAluno);
             }
         }
         if(index==0){

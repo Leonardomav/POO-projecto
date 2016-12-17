@@ -12,6 +12,6 @@ public class Docente extends Funcionario implements Serializable{
 
     @Override
     public String toString() {
-        return "Docente{" + "areaInv=" + areaInv + '}';
+        return "Docente de categoria " + getCategoria() + " - Nome: " + getNome() + ", e-mail: " + getEmail() + ", numero: " + getNumeroMec() + ", area de investigacao: " + areaInv;
     }
 }
