@@ -1,5 +1,7 @@
 # POO-projecto
 
-\nProjecto de Progamaçao Orientada a Objetos
-\n2016-2017
-\nInformatics Engineering university of Coimbra
+Projecto de Progamaçao Orientada a Objetos
+
+__2016-2017__
+
+Informatics Engineering __University of Coimbra__
